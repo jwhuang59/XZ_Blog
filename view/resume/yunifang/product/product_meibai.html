@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+<head>
+<script src="../js/jquery.js"></script>
+<script>
+$(function(){
+	$(".menu dl").hide().first().show()
+	$(".menu h1").mouseenter(
+	function(){
+		$(".menu dl").hide()
+		$(this).next("").show()
+		$(".menu h1").removeClass("currentH1")
+		$(this).addClass("currentH1")
+	}
+	)	
+})
+</script>
+<link href="../css/commen.css" rel="stylesheet">
+<style>
+.shop{width:1002px;margin-left:auto;margin-right:auto;text-align:center;position:relative;padding-top:60px;}
+.shop img{margin-left:auto;margin-right:auto;}
+.shop dl{float:left;width:25%;}
+.shop dt a{line-height:48px;color:black;font-size:16px;}
+.shop dt a:hover{color:#b2332d;}
+.content{line-height:40px;}
+.content a:hover{color:#b2332d;}
+.banner_box{position:relative;margin-left:auto;margin-right:auto;overflow:hidden;}
+.banner_box img{height:510px;width:1920px;}
+.banner_box ul{position:relative;left:50%;width:11520px;margin-left:-960px;}
+.banner_box li{float:left;}
+.ctrl{position:absolute;top:-35px;left:50%;margin-left:-246px;}
+.ctrl span{float:left;width:68px;height:68px;border-radius:50%;background-color:white;color:black;font-size:36px;margin-left:7px;margin-right:7px;text-align:center;line-height:68px;background-color:#eabca7;color:white;box-shadow: 0px 4px 1.88px 0.12px rgba(0, 0, 0, 0.14);cursor:pointer;}
+.ctrl .current{background-color:white;color:black;}
+.ctrl span:hover{background-color:white;color:black;}
+.a_left,.a_right{position:absolute;top:50%;width:30px;height:79px;z-index:2;cursor:pointer;margin-top:-40px;}
+.a_left{left:5%;background-image:url(../images/arrow_left.png);}
+.a_right{right:5%;background-image:url(../images/arrow_right.png);}
+.find_bg{background-color:#eee;padding-top:40px;padding-bottom:30px;}
+.search_box{width:1002px;margin-left:auto;margin-right:auto;}
+.search_box span,.search_box input,.search_box ul,.search_box li{float:left;}
+.search_box li{margin-left:9px;margin-right:9px;}
+.search_btn{background-image:url(../images/search_btn.png);width:24px;height:26px;margin-right:30px;}
+.search_text{height:26px;line-height:26px;padding-left:5px;margin-left:10px;}
+.find_column{clear:both;}
+.find_column dl{width:540px;padding-left:60px;}
+.find_column dd{border:solid 1px #d2d2d2;background-color:white;line-height:28px;padding-left:20px;padding-right:20px;float:left;margin:5px;}
+.find_column dd:hover{background-color:black;}
+.find_column dd:hover a{color:white;}
+.product_list{width:1002px;margin-left:auto;margin-right:auto;}
+.product{width:230px;float:left;margin:25px 10px;}
+.product h2{font-size:30px;color:#b2332d;}
+.product p{color:#a7a7a7;font-family:"宋体";font-size:12px;line-height:20px;padding-top:10px;padding-bottom:10px;}
+.sale{float:left;color:black;}
+.talk{float:right;}
+.sale span{color:#b2332d}
+.talk{color:blue;}
+.product h1{width:230px;height:170px;overflow:hidden;}
+.product img{-webkit-transition:transform 2s;-ms-transition:transform 2s;-moz-transition:transform 2s;-o-transition:transform 2s;}
+.product img:hover{-webkit-transform:scale(1.3,1.3);-ms-transform:scale(1.3,1.3);-moz-transform:scale(1.3,1.3);-o-transform:scale(1.3,1.3);}
+</style>
+<meta charset="utf-8">
+<title>御泥坊官网</title>
+</head>
+
+<body>
+<div class="white_bg">
+	<div class="header">
+    	<a class="cang" href=""><img src="../images/shoucang.png"></a>
+    	<a class="logo" href=""><img src="../images/logo.png"></a>
+        <ul class="nav">
+        	<li><a href="../index.html">首页</a></li>
+            <li><a href="../product/product.html">所有宝贝</a></li>
+            <li><a class="current" href="../product/product_meibai.html">美白嫩肤</a></li>
+            <li><a href="../product/product_bushui.html">补水保湿</a></li>
+            <li><a href="../product/product_kongyou.html">控油去痘</a></li>
+            <li><a href="##">会员特权</a></li>
+            <li><a href="##">母爱故事</a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="find_bg">
+	<div class="search_box">
+    	<span>快捷搜索</span>
+        <input class="search_text" type="text"><input class="search_btn" type="button">
+        <ul>
+        	<li>热搜词:</li>
+        	<li><a href="">套装</a></li>
+            <li><a href="">面膜</a></li>
+            <li><a href="">去黑头</a></li>
+            <li><a href="">收缩毛孔</a></li>
+            <li><a href="">乳液</a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="product_list">
+<div class="menu">
+	<h1>镇店之宝</h1>
+    <dl>
+    	<dd><a href="">美白去黄</a></dd>
+        <dd><a href="">美白去黄</a></dd>
+        <dd><a href="">美白去黄</a></dd>
+        <dd><a href="">美白去黄</a></dd>
+    </dl>
+    <h1>王牌功效</h1>
+    <dl>
+    	<dd><a href="">美白去黄</a></dd>
+        <dd><a href="">补水保湿锁水</a></dd>
+        <dd><a href="">控油祛痘</a></dd>
+        <dd><a href="">去黑头</a></dd>
+        <dd><a href="">淡化黑眼圈</a></dd>
+        <dd><a href="">收缩毛孔</a></dd>
+        <dd><a href="">温和清洁</a></dd>
+        <dd><a href="">修护调理</a></dd>
+    </dl>
+    <h1>产品分类</h1>
+    <dl>
+    	<dd><a href="">美白去黄</a></dd>
+        <dd><a href="">美白去黄</a></dd>
+        <dd><a href="">美白去黄</a></dd>
+        <dd><a href="">美白去黄</a></dd>
+    </dl>
+    <h1>肤质分类</h1>
+    <dl>
+    	<dd><a href="">美白去黄</a></dd>
+        <dd><a href="">美白去黄</a></dd>
+        <dd><a href="">美白去黄</a></dd>
+        <dd><a href="">美白去黄</a></dd>
+    </dl>
+</div>
+<div class="product_sub">
+  <div class="product">
+   	  <h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+    <div class="product">
+    	<h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+    <div class="product">
+    	<h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+    <div class="product">
+   	  <h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+    <div class="product">
+    	<h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+    <div class="product">
+    	<h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+    <div class="product">
+   	  <h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+    <div class="product">
+    	<h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+    <div class="product">
+    	<h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+    <div class="product">
+   	  <h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+    <div class="product">
+    	<h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+    <div class="product">
+    	<h1><img src="../images/pro_img03.png"></h1>
+        <h2>¥119.90</h2>
+        <p>御泥坊美白嫩肤矿物蚕丝面膜 补水保湿提亮肤色化妆护肤正品春夏</p>
+        <a class="sale" href="">总销量：<span>975527</span></a><a class="talk" href="">评价: 90486</a>
+    </div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="footer_bg">
+	<div class="footer"><a href="">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">官方商城</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">防伪查询</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">网站地图</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">人才招聘</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">联系我们</a><br>
+Copyright 2011 御泥坊 湘icp备05019620号    友情链接：<a href="">快递查询</a>
+<img class="logo_f" src="../images/logo_footer.png">
+<img class="script_img" src="../images/script_img.png">
+</div>
+</div>
+</body>
+</html>

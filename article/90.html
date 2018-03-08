@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- SEO关键字搜索 -->
+<meta name="keywords" content="jwhuang,戏子,戏子博客,jwhuang博客,个人博客,个人网站,个人主页,个人博客php源代码,基于php个人博客,戏子博客系统">
+<meta name="description" content="戏子博客,用jq+ajax+php+layui做的,简单方便,没有复杂的功能,就是一个简单个人展示博客">
+<meta name="author" content="jwhuang">
+<meta eta property="og:type" content="webpage" />
+<meta property="og:url" content="http://www.jwhuang.site" />
+<meta property="og:title" content="戏子的个人博客" />
+<meta property="og:description" content="一款简单的基于ajax+php+mysql的Blog网站" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>php模糊查询的实现方法</title>
+<link rel="shortcut icon" href="../logo.ico"></link>
+<link rel="stylesheet" href="../admin/layui/css/layui.css" >
+<link rel="stylesheet" href="../static/css/public.css">
+<link rel="stylesheet" href="../static/css/main.css">
+<link rel="stylesheet" href="../static/css/article.css"> 
+</head>
+<body>
+<div class="wrapper">
+    <canvas id="canvas" height="120px"></canvas>
+    <canvas id="canvasbg" height="120px"></canvas>
+</div>
+<div class="nav">
+  <div class="nav-menu">
+  <div class="logo"><img src="../static/images/logo.png"></div>
+    <ul class="nav-left">
+      <li><a href="http://jwhuang.site" class="menu-warper"><span class="menu-warper-box"><span class="front">首页</span><span class="back">首页</span></span> </a></li>
+      <li><a href="../view/article.html" class="menu-warper"><span class="menu-warper-box active"><span class="front">Blog文章</span><span class="back">Blog文章</span></span></a>
+        <ul>
+          <li><a href="../articlelist/talk.html" class="menu-warper"><span class="menu-warper-box"><span class="front">浅谈</span><span class="back">浅谈</span></span> </a></li>
+          <li><a href="../articlelist/js.html" class="menu-warper"><span class="menu-warper-box"><span class="front">JavaScript</span><span class="back">JavaScript</span></span> </a></li>
+          <li><a href="../articlelist/php.html" class="menu-warper"><span class="menu-warper-box"><span class="front">PHP</span><span class="back">php</span></span> </a></li>
+          <li><a href="../articlelist/front.html" class="menu-warper"><span class="menu-warper-box"><span class="front">前端文档</span><span class="back">前端文档</span></span> </a></li>
+          <li><a href="../articlelist/after.html" class="menu-warper"><span class="menu-warper-box"><span class="front">后端文档</span><span class="back">后端文档</span></span> </a></li>
+        </ul>
+      </li>
+      <li><a href="../view/share.html" class="menu-warper"><span class="menu-warper-box"><span class="front">分享</span><span class="back">分享</span></span> </a></li>
+      <li><a href="../view/about.html" class="menu-warper"><span class="menu-warper-box"><span class="front">关于我</span><span class="back">关于我</span></span></a>
+        <ul>
+          <li><a href="../view/resume/index.html" class="menu-warper"><span class="menu-warper-box"><span class="front">个人简历</span><span class="back">个人简历</span></span> </a></li>
+          
+        </ul>
+      </li>
+      <li><a href="../view/message.html" class="menu-warper"><span class="menu-warper-box"><span class="front">留言</span><span class="back">留言</span></span> </a></li>
+    </ul>
+    <div class="nav-right">
+      <a>搜索</a>
+      <div class="search">
+        <span>×</span>
+        <form action="../view/search.html" mothod="get">
+          <input type="text" class="text" name="keyword" placeholder="输入关键词搜索" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="main-left">
+    <div class="breadcrumb_nav">
+        <span class="breadcrumb">
+          <a href="http://jwhuang.site">首页</a> —
+          <a href="../view/article.html">Blog文章</a> —
+          <a href="../articlelist/php.html">PHP</a> —
+          <label>php模糊查询的实现方法</label>
+        </span>
+    </div>
+    <div class="article">
+        <h2 class="h2">php模糊查询的实现方法</h2>
+        <div class="art_msg">
+            <span>发布时间：<label class="msg_date">2018-02-26 12:10:20</label></span>
+            <span>浏览量：<label class="msg_browse browse"></label></span>
+            <span>评论数：<label class="msg_browse"><span id = "sourceId::90" class = "cy_cmt_count" style="display:inline"></span></label></span>
+        </div>
+        <div class="art_text">
+            <p><p><strong>模糊检索</strong></p>
+
+<p><strong>指搜索系统自动按照用户输入关键词的同义词进行模糊检索，从而得出较多的检索结果。</strong></p>
+
+<p><strong>模式查询</strong></p>
+
+<p>1. SQL匹配模式</p>
+
+<p>2.&nbsp;<a href="http://www.php.cn/wiki/588.html" target="_blank">正则表达式</a>匹配模式（一般不推荐使用）</p>
+
+<p><strong>SQL匹配模式</strong></p>
+
+<p>1.使用sql匹配模式，不能使用<a href="http://www.php.cn/wiki/996.html" target="_blank">操作符</a>=或！=，而是使用操作符LIKE或NOT LIKE；</p>
+
+<p>2.使用sql匹配模式，MYSQL提供了2种<a href="http://www.php.cn/code/6725.html" target="_blank">通配符</a>。</p>
+
+<p>%表示任意数量的任意字符（其中包括0个）</p>
+
+<p>_表示任意单个字符</p>
+
+<p>3.使用sql匹配模式，如果匹配格式中不包含以上2种通配符中的任意一个，其查询的效果等同于=或！=</p>
+
+<p>4.使用sql匹配模式，匹配时，不区分大小写</p>
+
+<hr />
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#查询用户名以某个字符开头的用户</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#查询用户名以字符</code><code>&#39;l&#39;</code><code>开头的用户： l%</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>SELECT * FROM user WHERE username LIKE&nbsp;</code><code>&#39;l%&#39;</code><code>;</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#查询用户名以某个字符结尾的用户</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#查询用户名以字符</code><code>&#39;e&#39;</code><code>结尾的用户：e%</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>SELECT * FROM user WHERE username LIKE&nbsp;</code><code>&#39;e%&#39;</code><code>;</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#查询用户名包含某个字符的用户</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#查询用户名包含字符</code><code>&#39;o&#39;</code><code>的用户：%o%</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>SELECT * FROM user WHERE username LIKE&nbsp;</code><code>&#39;%o%&#39;</code><code>;</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#查询包含三个字符的用户</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>SELECT * FROM user WHERE username LIKE&nbsp;</code><code>&#39;_&#39;</code><code>;</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#查询用户名第二个字符为o的用户：_o%</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>SELECT * FROM user WHERE username LIKE&nbsp;</code><code>&#39;_o%&#39;</code><code>;</code></div>
+
+<hr />
+<p><strong>正则表达式匹配模式</strong></p>
+
+<p>通配符(正则表达式)</p>
+
+<p>.匹配任意的单个字符</p>
+
+<p>*匹配0个或多个在它前面的字符</p>
+
+<p>x*表示匹配任何数量的x字符</p>
+
+<p>[..]匹配中括号中的任意字符<br />
+[abc]匹配字符ab或c<br />
+[a-z]匹配任意字母<br />
+[0-9]匹配任意数字<br />
+[0-9]*匹配任意数量的任何数字<br />
+[a-z]*匹配任何数量的字母</p>
+
+<p>^表示以某个字符或<a href="http://www.php.cn/wiki/57.html" target="_blank">字符串</a>开始<br />
+<br />
+^a 表示以字母a开头</p>
+
+<p>$表示以某个字符或字符串结尾<br />
+<br />
+s$表示以字母s结尾</p>
+
+<p>使用正则表达式匹配模式使用的操作符是：</p>
+
+<p>REGEXP 或 NOT REGEXP(RLIKE 或 NOT RLIKE)</p>
+
+<p>注意：正则表达式匹配模式，其正则表达式出现在匹配字段的任意位置，</p>
+
+<p>其模式就算匹配了，不必在两侧放一个通配符来使得其匹配；</p>
+
+<p>如果仅用通配符 . 来匹配，假设N个，那么其匹配模式表示，大于等于N个；</p>
+
+<p>怎么理解上面这句话呢？</p>
+
+<p>就是说</p>
+
+<p>... 匹配大于等于3个字符的数据<br />
+.... 匹配大于等于4个字符的数据<br />
+#查询用户名以字符 l开头的用户：^l;<br />
+#正则表达式写法</p>
+
+<hr />
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>SELECT * FROM user WHERE username REGEXP&nbsp;</code><code>&#39;^l&#39;</code><code>;</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#sql匹配模式写法：</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>SELECT * FROM user WHERE username LIKE&nbsp;</code><code>&#39;l%&#39;</code><code>;</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#查询用户名正好是三个字符的用户：^...$;</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#sql匹配模式写法：</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>SELECT * FROM user WHERE username LIKE&nbsp;</code><code>&#39;_&#39;</code><code>;</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>#正则表达式写法</code></div>
+
+<div style="background:none !important; border:0px !important; padding:0px 1em !important"><code>SELECT * FROM user WHERE username REGEXP&nbsp;</code><code>&#39;^...$&#39;</code><code>;</code></div>
+
+<hr />
+<h2><strong>附上demo（</strong><strong>jq.ajax+php+mysql实现关键字模糊查询</strong> <strong>）</strong></h2>
+
+<p>index.html</p>
+
+<hr />
+<ol>
+	<li>&lt;!DOCTYPE&nbsp;html<strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>html</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>head</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>meta</strong>&nbsp;charset=&quot;utf-8&quot;<strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>head</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>style</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li>*{margin:0;padding:0;}&nbsp;&nbsp;</li>
+	<li>.text{width:200px;height:30px;line-height:30px;font-size:14px;outline:none;}&nbsp;&nbsp;</li>
+	<li>ul{width:200px;height:auto;border:1px&nbsp;solid&nbsp;#999;border-top:none;}&nbsp;&nbsp;</li>
+	<li>ul&nbsp;li{width:200px;height:30px;line-height:30px;font-size:14px;}&nbsp;&nbsp;</li>
+	<li>li:hover{background:#ddd;}&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>style</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>body</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>input</strong>&nbsp;type=&quot;text&quot;&nbsp;class=&quot;text&quot;&nbsp;name=&quot;text&quot;<strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>ul</strong>&nbsp;class=&quot;sea&quot;<strong>&gt;</strong><strong>&lt;/</strong><strong>ul</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>script</strong>&nbsp;type=&quot;text/javascript&quot;&nbsp;src=&quot;http://code.jquery.com/jquery-2.1.1.min.js&quot;<strong>&gt;</strong><strong>&lt;/</strong><strong>script</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>script</strong>&nbsp;type=&quot;text/javascript&quot;<strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li>$(&quot;.text&quot;).bind(&quot;input&quot;,&nbsp;function()&nbsp;{&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;if($(this).val().length<strong>&gt;</strong>0){&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;search();&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;}else{&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(&quot;.sea&quot;).html(&#39;&#39;);&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+	<li>})&nbsp;&nbsp;</li>
+	<li>function&nbsp;search(){&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;$.ajax({&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&quot;GET&quot;,&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url:&quot;sea.php&quot;,&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data:{&quot;text&quot;:$(&quot;.text&quot;).val()},&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;success:function(response){&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//转换成json对象&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval(&quot;var&nbsp;json=&quot;+response);&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//console.log(json)&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;str=&quot;&quot;;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(var&nbsp;i=0;i<strong>&lt;</strong><strong>json.length</strong>;i++){&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;+=&nbsp;&quot;<strong>&lt;</strong><strong>li</strong><strong>&gt;</strong>&quot;&nbsp;+&nbsp;json[i].sea&nbsp;+&nbsp;&quot;<strong>&lt;/</strong><strong>li</strong><strong>&gt;</strong>&quot;;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(&quot;.sea&quot;).html(str);&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;})&nbsp;&nbsp;</li>
+	<li>}&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>script</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>body</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>html</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+</ol>
+
+<hr />
+<p>sea.php&nbsp;&nbsp;</p>
+
+<hr />
+<ol>
+	<li>&lt;?php&nbsp;&nbsp;</li>
+	<li>$con&nbsp;=&nbsp;mysqli_connect(&quot;localhost&quot;,&quot;username&quot;,&quot;password&quot;);&nbsp;&nbsp;</li>
+	<li><strong>if</strong>(!$con){&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&quot;数据库链接失败&quot;;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;exit;&nbsp;&nbsp;</li>
+	<li>}&nbsp;&nbsp;</li>
+	<li>mysqli_select_db($con,&#39;jwhuang&#39;);&nbsp;&nbsp;</li>
+	<li>mysqli_query($con,&#39;set&nbsp;names&nbsp;utf-8&#39;);&nbsp;&nbsp;</li>
+	<li>$text=&nbsp;isset($_GET[&#39;text&#39;])&nbsp;?&nbsp;trim($_GET[&#39;text&#39;])&nbsp;:&nbsp;&#39;&#39;;&nbsp;&nbsp;</li>
+	<li>$result=mysqli_query($con,&quot;select&nbsp;*&nbsp;from&nbsp;search&nbsp;where&nbsp;sea&nbsp;LIKE&nbsp;&#39;{$text}%&#39;&nbsp;&quot;);&nbsp;&nbsp;</li>
+	<li>$search=<strong>array</strong>();&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li><strong>while</strong>($row=mysqli_fetch_assoc($result)){&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;//判断是否有对应的数据&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;<strong>if</strong>(!$row){&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$search=&#39;&#39;;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;}<strong>else</strong>{&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//对查询关键字进行标记&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$row[&#39;sea&#39;]&nbsp;=&nbsp;str_replace($text,&nbsp;&#39;&lt;font&nbsp;color=&quot;red&quot;&gt;&#39;&nbsp;.$text.&nbsp;&#39;&lt;/font&gt;&#39;,&nbsp;$row[&#39;sea&#39;]);&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$search[]=$row;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+	<li>}&nbsp;&nbsp;</li>
+	<li>echo&nbsp;json_encode($search);&nbsp;&nbsp;</li>
+	<li>?&gt;&nbsp;&nbsp;</li>
+</ol>
+
+<hr />
+<p>效果图</p>
+
+<p><img alt="" src="http://jwhuang.site/uploads/search.png" style="height:158px; width:282px" /></p>
+</p>
+        </div>
+        <div class="art_tag">
+            <p>标签1，标签2</p>
+        </div>
+        <div class="prev_next">
+            <div class="prev"> 上一篇： <a href="../article/89.html">程序员到底会不会修电脑</a></div>
+            <div class="next"> 下一篇： <a href="../article/91.html">曾经用过的十大富文本编辑器</a></div>
+        </div>
+    </div>
+
+    <div class="comment">
+        <div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+        <div id="SOHUCS" sid="90"></div>
+    </div>
+
+
+  </div>
+  <div class="main-right">
+      <div class="about">
+        <h3>博客信息</h3>
+        <p>主页</p>
+        <a href="http://www.jwhuang.site">www.jwhuang.site</a>
+        <p>源码地址</p>
+        <b>Github<a href="https://github.com/jwhuang59/XZ_Blog" target="_black">点我打开</a></b>
+        <span><strong>简介：</strong>一款简单的基于ajax+php+mysql的Blog网站，用于记录自己所学的知识，支持QQ、微博账号第三方登陆，欢迎来留言、评论。</span>
+        <span><strong>座右铭：</strong>路漫漫其修远兮，吾将上下而求索</span>
+      </div>
+      <div class="hot_list">
+        <h3>热门文章</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="wx">
+        <h3>小程序</h3>
+        <div class="wx_img">
+          <img src="../static/images/wx_img.jpg">
+        </div>
+      </div>
+      <div class="tag_cloud">
+        <h3>Tags</h3>
+        <div id="tags">
+         
+        </div>
+      </div>
+      <div class="fl_list">
+        <h3>分类</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="link">
+        <h3>友情链接</h3>
+        <ul class="href">
+            
+        </ul>
+      </div>
+
+  </div>
+  <div class="clear"></div>
+</div>
+
+<ul class="layui-fixbar">
+  
+    <li class="layui-icon top">&#xe604;</li>
+</ul>
+<div class="footer">
+    <p><i class="layui-icon">&#xe68e;</i> 博客空间 <a href="http://jwhuang.site">jwhuang.site</a></p>
+    <p>Copyright © 2018 <a href="http://jwhuang.site">jwhuang</a> &  版权所有  | <a href="https://github.com/jwhuang59/XZ_Blog" target="_black">网站源码Github</a></p>
+    <p>鄂ICP备16024346号</p>
+</div>
+
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cytrygClo"></script>
+<script id="cy_cmt_num" src="http://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytrygClo"></script>
+<script type="text/javascript" src='../static/js/jquery.js'></script>
+<script type="text/javascript" src="../admin/layui/layui.js"></script>
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/public.js"></script>
+<!-- 畅言js -->
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cytrygClo',
+conf: 'prod_3a6cc613160ae35fc755d1dab12d50f9'
+});
+$.get("../model/count.php",{id:"90"},function(data){
+  
+  $(".main .main-left .article .browse").html(data+"℃")
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- SEO关键字搜索 -->
+<meta name="keywords" content="jwhuang,戏子,戏子博客,jwhuang博客,个人博客,个人网站,个人主页,个人博客php源代码,基于php个人博客,戏子博客系统">
+<meta name="description" content="戏子博客,用jq+ajax+php+layui做的,简单方便,没有复杂的功能,就是一个简单个人展示博客">
+<meta name="author" content="jwhuang">
+<meta eta property="og:type" content="webpage" />
+<meta property="og:url" content="http://www.jwhuang.site" />
+<meta property="og:title" content="戏子的个人博客" />
+<meta property="og:description" content="一款简单的基于ajax+php+mysql的Blog网站" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>手机访问PC网站自动跳转到手机</title>
+<link rel="shortcut icon" href="../logo.ico"></link>
+<link rel="stylesheet" href="../admin/layui/css/layui.css" >
+<link rel="stylesheet" href="../static/css/public.css">
+<link rel="stylesheet" href="../static/css/main.css">
+<link rel="stylesheet" href="../static/css/article.css"> 
+</head>
+<body>
+<div class="wrapper">
+    <canvas id="canvas" height="120px"></canvas>
+    <canvas id="canvasbg" height="120px"></canvas>
+</div>
+<div class="nav">
+  <div class="nav-menu">
+  <div class="logo"><img src="../static/images/logo.png"></div>
+    <ul class="nav-left">
+      <li><a href="http://jwhuang.site" class="menu-warper"><span class="menu-warper-box"><span class="front">首页</span><span class="back">首页</span></span> </a></li>
+      <li><a href="../view/article.html" class="menu-warper"><span class="menu-warper-box active"><span class="front">Blog文章</span><span class="back">Blog文章</span></span></a>
+        <ul>
+          <li><a href="../articlelist/talk.html" class="menu-warper"><span class="menu-warper-box"><span class="front">浅谈</span><span class="back">浅谈</span></span> </a></li>
+          <li><a href="../articlelist/js.html" class="menu-warper"><span class="menu-warper-box"><span class="front">JavaScript</span><span class="back">JavaScript</span></span> </a></li>
+          <li><a href="../articlelist/php.html" class="menu-warper"><span class="menu-warper-box"><span class="front">PHP</span><span class="back">php</span></span> </a></li>
+          <li><a href="../articlelist/front.html" class="menu-warper"><span class="menu-warper-box"><span class="front">前端文档</span><span class="back">前端文档</span></span> </a></li>
+          <li><a href="../articlelist/after.html" class="menu-warper"><span class="menu-warper-box"><span class="front">后端文档</span><span class="back">后端文档</span></span> </a></li>
+        </ul>
+      </li>
+      <li><a href="../view/share.html" class="menu-warper"><span class="menu-warper-box"><span class="front">分享</span><span class="back">分享</span></span> </a></li>
+      <li><a href="../view/about.html" class="menu-warper"><span class="menu-warper-box"><span class="front">关于我</span><span class="back">关于我</span></span></a>
+        <ul>
+          <li><a href="../view/resume/index.html" class="menu-warper"><span class="menu-warper-box"><span class="front">个人简历</span><span class="back">个人简历</span></span> </a></li>
+          
+        </ul>
+      </li>
+      <li><a href="../view/message.html" class="menu-warper"><span class="menu-warper-box"><span class="front">留言</span><span class="back">留言</span></span> </a></li>
+    </ul>
+    <div class="nav-right">
+      <a>搜索</a>
+      <div class="search">
+        <span>×</span>
+        <form action="../view/search.html" mothod="get">
+          <input type="text" class="text" name="keyword" placeholder="输入关键词搜索" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="main-left">
+    <div class="breadcrumb_nav">
+        <span class="breadcrumb">
+          <a href="http://jwhuang.site">首页</a> —
+          <a href="../view/article.html">Blog文章</a> —
+          <a href="../articlelist/front.html">前端文档</a> —
+          <label>手机访问PC网站自动跳转到手机</label>
+        </span>
+    </div>
+    <div class="article">
+        <h2 class="h2">手机访问PC网站自动跳转到手机</h2>
+        <div class="art_msg">
+            <span>发布时间：<label class="msg_date">2018-03-06 14:53:38</label></span>
+            <span>浏览量：<label class="msg_browse browse"></label></span>
+            <span>评论数：<label class="msg_browse"><span id = "sourceId::105" class = "cy_cmt_count" style="display:inline"></span></label></span>
+        </div>
+        <div class="art_text">
+            <p><h2>第一种方式：<br />
+推荐，简单易用，亲测可以正常使用，代码如下：</h2>
+
+<p>&lt;script src=&quot;http://siteapp.baidu.com/static/webappservice/uaredirect.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;<br />
+&lt;script type=&quot;text/javascript&quot;&gt;uaredirect(&quot;你的手机版网址&quot;);&lt;/script&gt;</p>
+
+<h2><br />
+第二种方式：</h2>
+
+<p>添加js代码，代码如下：</p>
+
+<p>&lt;script type=&quot;text/javascript&quot;&gt;<br />
+&nbsp; &nbsp; try {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; var urlhash = window.location.hash;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if (!urlhash.match(&quot;fromapp&quot;)) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if ((navigator.userAgent.match(/(iPhone|iPod|Android|ios|iPad)/i))) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; window.location = &quot;你的手机版地址&quot;;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; }&nbsp;<br />
+&nbsp; &nbsp; catch (err) {<br />
+&nbsp; &nbsp; }<br />
+&lt;/script&gt;</p>
+
+<h2>第三种方式：</h2>
+
+<p>添加js代码，代码如下：</p>
+
+<p>&lt;script type=&quot;text/javascript&quot;&gt;<br />
+&nbsp; &nbsp; function urlredirect() {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; var sUserAgent = navigator.userAgent.toLowerCase();<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if ((sUserAgent.match(/(ipod|iphone os|midp|ucweb|android|windows ce|windows mobile)/i))) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //PC跳转移动端<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; var thisUrl = window.location.href;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //此处是在PC链接后自动添加手机版前缀，根据项目自行变更，我的是m开头<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; window.location.href = thisUrl.substr(0,thisUrl.lastIndexOf(&#39;/&#39;) + 1) + &#39;mobile/&#39;;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; urlredirect();<br />
+&lt;/script&gt;</p>
+
+<h2>第四种方式：</h2>
+
+<p>添加js代码，代码如下：</p>
+
+<p>&lt;script type=&quot;text/javascript&quot;&gt;<br />
+&nbsp; &nbsp; function mobile_device_detect(url) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; var thisOS = navigator.platform;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; var os = new Array(&quot;iPhone&quot;, &quot;iPod&quot;, &quot;iPad&quot;, &quot;android&quot;, &quot;Nokia&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;SymbianOS&quot;, &quot;Symbian&quot;, &quot;Windows Phone&quot;, &quot;Phone&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;Linux armv71&quot;, &quot;MAUI&quot;, &quot;UNTRUSTED/1.0&quot;, &quot;Windows CE&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;BlackBerry&quot;, &quot;IEMobile&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; for ( var i = 0; i &lt; os.length; i++) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (thisOS.match(os[i])) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; window.location = url;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // 因为相当部分的手机系统不知道信息,这里是做临时性特殊辨认<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if (navigator.platform.indexOf(&#39;iPad&#39;) != -1) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; window.location = url;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // 做这一部分是因为Android手机的内核也是Linux<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // 但是navigator.platform显示信息不尽相同情况繁多,因此从浏览器下手，即用navigator.appVersion信息做判断<br />
+&nbsp; &nbsp; &nbsp; &nbsp; var check = navigator.appVersion;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; if (check.match(/linux/i)) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // X11是UC浏览器的平台 ，如果有其他特殊浏览器也可以附加上条件<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (check.match(/mobile/i) || check.match(/X11/i)) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; window.location = url;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // 类in_array函数<br />
+&nbsp; &nbsp; &nbsp; &nbsp; Array.prototype.in_array = function(e) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for (i = 0; i &lt; this.length; i++) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (this[i] == e)<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return true;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return false;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; }<br />
+&nbsp; &nbsp; mobile_device_detect(&quot;你的手机版地址&quot;);<br />
+&lt;/script&gt;</p>
+</p>
+        </div>
+        <div class="art_tag">
+            <p>标签1，标签2</p>
+        </div>
+        <div class="prev_next">
+            <div class="prev"> 上一篇： <a href="../article/102.html">JS获取浏览器高度和宽度值（总结）</a></div>
+            <div class="next"> 下一篇： <a href="../article/107.html">json字符串、json对象、数组 三者之间的转换</a></div>
+        </div>
+    </div>
+
+    <div class="comment">
+        <div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+        <div id="SOHUCS" sid="105"></div>
+    </div>
+
+
+  </div>
+  <div class="main-right">
+      <div class="about">
+        <h3>博客信息</h3>
+        <p>主页</p>
+        <a href="http://www.jwhuang.site">www.jwhuang.site</a>
+        <p>源码地址</p>
+        <b>Github<a href="https://github.com/jwhuang59/XZ_Blog" target="_black">点我打开</a></b>
+        <span><strong>简介：</strong>一款简单的基于ajax+php+mysql的Blog网站，用于记录自己所学的知识，支持QQ、微博账号第三方登陆，欢迎来留言、评论。</span>
+        <span><strong>座右铭：</strong>路漫漫其修远兮，吾将上下而求索</span>
+      </div>
+      <div class="hot_list">
+        <h3>热门文章</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="wx">
+        <h3>小程序</h3>
+        <div class="wx_img">
+          <img src="../static/images/wx_img.jpg">
+        </div>
+      </div>
+      <div class="tag_cloud">
+        <h3>Tags</h3>
+        <div id="tags">
+         
+        </div>
+      </div>
+      <div class="fl_list">
+        <h3>分类</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="link">
+        <h3>友情链接</h3>
+        <ul class="href">
+            
+        </ul>
+      </div>
+
+  </div>
+  <div class="clear"></div>
+</div>
+
+<ul class="layui-fixbar">
+  
+    <li class="layui-icon top">&#xe604;</li>
+</ul>
+<div class="footer">
+    <p><i class="layui-icon">&#xe68e;</i> 博客空间 <a href="http://jwhuang.site">jwhuang.site</a></p>
+    <p>Copyright © 2018 <a href="http://jwhuang.site">jwhuang</a> &  版权所有  | <a href="https://github.com/jwhuang59/XZ_Blog" target="_black">网站源码Github</a></p>
+    <p>鄂ICP备16024346号</p>
+</div>
+
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cytrygClo"></script>
+<script id="cy_cmt_num" src="http://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytrygClo"></script>
+<script type="text/javascript" src='../static/js/jquery.js'></script>
+<script type="text/javascript" src="../admin/layui/layui.js"></script>
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/public.js"></script>
+<!-- 畅言js -->
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cytrygClo',
+conf: 'prod_3a6cc613160ae35fc755d1dab12d50f9'
+});
+$.get("../model/count.php",{id:"105"},function(data){
+  
+  $(".main .main-left .article .browse").html(data+"℃")
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- SEO关键字搜索 -->
+<meta name="keywords" content="jwhuang,简历,个人简历,戏子的个人简历">
+<meta name="description" content="个人简历H5版,用H5+css3+js做的,一个简单个人展示简历">
+<meta name="author" content="jwhuang">
+<meta eta property="og:type" content="webpage" />
+<meta property="og:url" content="http://www.jwhuang.site" />
+<meta property="og:title" content="戏子的个人简历" />
+<meta property="og:description" content="一款简单的基于H5+CSS3的个人简历网站" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>个人简历</title>
+<link href="css/style.css" rel="stylesheet"/>
+<style type="text/css">
+*{margin:0;padding:0;}
+#loading{width:100%;height:100%;background:#fff;position:absolute;z-index:1000;}
+#loading .shclProgress{width:100px;height:100px;margin:10px auto;position:absolute;top:50%;left:50%;margin-left:-50px;margin-top:-50px;}
+</style>
+
+</head>
+<body>
+
+<!-- 页面加载 -->
+
+<div id="loading">
+	<div class="shclProgress"></div>
+</div>
+
+<!-- 标题导航 -->
+
+<ul id="menu">
+	<a href="#page1"><li data-menuanchor="page1" class="active"><p>Home</p></li></a>
+	<a href="#page2"><li data-menuanchor="page2"><p>About</p></li></a>
+	<a href="#page3"><li data-menuanchor="page3"><p>Skills</p></li></a>
+	<a href="#page4"><li data-menuanchor="page4"><p>Expenience</p></li></a>
+	<a href="#page5"><li data-menuanchor="page5"><p>Projects</p></li></a>
+	<a href="#page6"><li data-menuanchor="page6"><p>Contact</p></li></a>
+</ul>
+
+<!-- 项目导航 -->
+
+<div class="menu">
+	<ol id="menu1">
+		<div class="man">
+		<img class="rotate" src="images/man.jpg" style="width:60px;height:60px;border-radius:50%;float:left;"><p>F2E<br>个人简历</p></div>
+		<audio autoplay preload id="music">
+			<source src="bgmusic/song.mp3" type="audio/mpeg">
+		</audio>
+		<div class="min-show"><img src="images/more.png"></div>
+		<div class="lis">
+			<a href="#page1"><li data-menuanchor="page1" class="active"><p>首页</p><span></span><strong></strong></li></a>
+			<a href="#page2"><li data-menuanchor="page2"><p>关于我</p><span></span><strong></strong></li></a>
+			<a href="#page3"><li data-menuanchor="page3"><p>专业技能</p><span></span><strong></strong></li></a>
+			<a href="#page4"><li data-menuanchor="page4"><p>个人经历</p><span></span><strong></strong></li></a>
+			<a href="#page5"><li data-menuanchor="page5"><p>项目作品</p><span></span><strong></strong></li></a>
+			<a href="#page6"><li data-menuanchor="page6"><p>联系我</p><span></span><strong></strong></li></a>
+		</div>
+	</ol>
+</div>
+
+<!-- 主体部分 -->
+
+<div id="content">
+
+<!-- 第一页 -->
+
+	<div class="section">
+		<div class="ph"><img src="images/bg1.jpg"></div>
+		<div class="bg1">
+			<img src="images/people.jpg">
+			<p>WEB&FRONT-END DESIGNER</p>
+			<span>I am a professional <strong>WEB Front-End Developer</strong> creating modern and responsive designs for <strong>Web</strong> and <strong>Mobile</strong>. Let us work together. Thank you</span>
+			<div class="jiantou" onclick="window.location='#page2'"></div>
+		</div>
+	</div>
+
+<!-- 第二页 -->
+
+	<div class="section">
+		<div class="ph"><img src="images/bg2.jpg"></div>
+		<div class="bg2">
+			<div class="title">关于我<span></span><strong></strong></div>
+			<div class="text">- ABOUT ME -</div>
+			<ul>
+				<li><div class="img"><img src="images/age.png" ></div><p>基本信息</p><span>姓名：黄家伟 男<br>年龄：23 籍贯：湖北</span></li>
+				<li><div class="img"><img src="images/education.png"></div><p>毕业院校</p><span>武汉交通职业学院</span></li>
+				<li><div class="img"><img src="images/status.png"></div><p>学历专业</p><span>网页开发 大专<br>主修专业：html+css javascript jquery mysql</span></li>
+				<li><div class="img"><img src="images/location.png"></div><p>所在坐标</p><span>上海浦东新区</span></li>
+			</ul>
+			<div class="test">
+				<div class="box1"></div>
+				<div class="box2"></div>
+				<p class="p1">自我简述</p>
+				<p class="p2">爱好前端技术，希望在前端方面展现自己的才华</p>
+				<p class="p3">易与人相处，拥有良好的亲和力</p>
+				<p class="p4">具有较强的自学能力，喜欢研究各种新的框架</p>
+			</div>
+		</div>
+	</div>
+
+<!-- 第三页 -->
+
+	<div class="section">
+		<div class="ph"><img src="images/bg3.jpg"></div>
+		<div class="bg3">
+			<div class="title">专业技能<span></span><strong></strong></div>
+			<div class="text">- SKILLS -</div>
+			<div class="text0">前端开发的核心就是对原生javascript的理解，前端学习需要持之以恒，知识深度与广度都很重要。</div>
+			<ul>
+				<li>
+					<div class="circle">  
+			            <div class="wrapper-right">  
+			                <div class="progress rightcircle"></div>  
+			            </div>  
+			            <div class="wrapper-left">  
+			                <div class="progress leftcircle"></div>  
+			            </div>
+			            <div class="mask"><span>85</span>%</div>  
+		     		</div>
+		     		<div class="text">HTML5+CSS3</div>
+     			</li>
+     			<li>
+					<div class="circle">  
+			            <div class="wrapper-right">  
+			                <div class="progress rightcircle"></div>  
+			            </div>  
+			            <div class="wrapper-left">  
+			                <div class="progress leftcircle1"></div>  
+			            </div>
+			            <div class="mask"><span>84</span>%</div>
+		     		</div>
+		     		<div class="text">JavaScript</div>
+     			</li>
+     			<li>
+					<div class="circle">  
+			            <div class="wrapper-right">  
+			                <div class="progress rightcircle"></div>  
+			            </div>  
+			            <div class="wrapper-left">  
+			                <div class="progress leftcircle2"></div>  
+			            </div>
+			            <div class="mask"><span>92</span>%</div> 
+		     		</div>
+		     		<div class="text">Jquery</div>
+     			</li>
+     			<li>
+					<div class="circle">  
+			            <div class="wrapper-right">  
+			                <div class="progress rightcircle"></div>  
+			            </div>  
+			            <div class="wrapper-left">  
+			                <div class="progress leftcircle3"></div>  
+			            </div>
+			            <div class="mask"><span>75</span>%</div>  
+		     		</div>
+		     		<div class="text">Ajax+PHP</div>
+     			</li>
+			</ul>
+		</div>
+	</div>
+
+<!-- 第四页 -->
+
+	<div class="section">
+		<div class="ph"><img src="images/bg4.jpg"></div>
+		<div class="bg4">
+			<div class="title">个人经历<span></span><strong></strong></div>
+			<div class="text">- EXPERIENCE -</div>
+			<div class="nav">
+					<div class="wire"></div>
+					<div class="A">
+						<a href="##" title="2015年10月-2016年2月"></a>
+						<a href="##" title="2015年3月-2016年9月"></a>
+						<a href="##" title="2015年10月-2017年6月"></a>
+					</div>
+			</div>
+			<ul>
+				<div class="img1"></div>
+				<div class="img2"></div>
+				<div class="bigbox">
+					<li>
+						<img src="images/img-bg.jpg">
+						<div class="text">
+							<p>武汉欧天利商贸有限公司</p>
+							<span>2015年10月-2016年2月</span>
+							<ol>
+								<li><strong>·</strong>&nbsp&nbsp网络部（实习）</li>
+								<li><strong>·</strong>&nbsp&nbsp负责网站前台维护，微博、微信等媒体撰写，营销</li>
+								<li><strong>·</strong>&nbsp&nbsp利用前端技术推广并应用到公司的产品当中</li>
+								<li><strong>·</strong>&nbsp&nbsp工作之余自学web前端各项技术</li>
+							</ol>
+						</div>
+					</li>
+					<li>
+						<img src="images/img-bg.jpg">
+						<div class="text">
+							<p>上海迈达斯金融管理有限公司</p>
+							<span>2016年3月-2016年9月</span>
+							<ol>
+								<li><strong>·</strong>&nbsp&nbsp市场部</li>
+								<li><strong>·</strong>&nbsp&nbsp负责公司产品的网站开发</li>
+								<li><strong>·</strong>&nbsp&nbsp网站内容的更新维护、网站活动专题页面制作</li>
+								<li><strong>·</strong>&nbsp&nbsp工作之余自学web前端各项技术</li>
+							</ol>
+						</div>
+					</li>
+					<li>
+						<img src="images/img-bg.jpg">
+						<div class="text">
+							<p>上海睿玲建筑钢结构有限公司</p>
+							<span>2016年10月-2017年6月</span>
+							<ol>
+								<li><strong>·</strong>&nbsp&nbsp信息部</li>
+								<li><strong>·</strong>&nbsp&nbsp利用前端技术负责公司企业的整站开发</li>
+								<li><strong>·</strong>&nbsp&nbsp负责网站策划、撰写文案及配合seo进行网站优化</li>
+								<li><strong>·</strong>&nbsp&nbsp喜欢研究各种框架及手写插件</li>
+							</ol>
+						</div>
+					</li>
+				</div>
+			</ul>
+		</div>
+	</div>
+
+<!-- 第五页 -->
+
+	<div class="section">
+		<div class="ph"><img src="images/bg5.jpg"></div>
+		<div class="bg5">
+			<div class="title">项目作品<span></span><strong></strong></div>
+			<div class="text">- PROJECTS -</div>
+			<div class="text0">网站特效及功能，不依赖插件，手写代码简洁高效，更能提升自己技术。</div>
+			<ul>
+				<li onclick="window.open('backsite/index.html')"><div class="img"><img src="images/demo1.jpg"></div><p>后台模板</p><span></span></li>
+				<li onclick="window.open('yunifang/index.html')"><div class="img"><img src="images/demo2.jpg"></div><p>御泥坊商贸</p><span></span></li>
+				<li onclick="window.open('http://www.mdsforex.com')"><div class="img"><img src="images/demo3.jpg"></div><p>迈达斯金融</p><span></span></li>
+				<li onclick="window.open('ruiling/index.html')"><div class="img"><img src="images/demo4.jpg"></div><p>睿玲装饰</p><span></span></li>	
+			</ul>
+			<div class="demo">更多Demo请移步<a href="https://github.com/jwhuang59">这里</a></div>
+		</div>
+	</div>
+
+<!-- 第六页 -->
+
+	<div class="section">
+		<div class="ph"><img src="images/bg6.jpg"></div>
+		<div class="bg6">
+			<div class="title">联系我<span></span><strong></strong></div>
+			<div class="text">- CONTACT ME -</div>
+			<div class="text0">灵感 代码 梦想 未来</div>
+			<ul>
+				<li style="color:#f00">INSPIRATION</li>
+				<li style="color:#3cf">CODE</li>
+				<li style="color:#6c0">DREAM</li>
+				<li style="color:#f63">FUTURE</li>
+			</ul>
+			<p>	学习是一个充实愉悦的过程<br>
+				前端更贴近用户这种体验非常美妙<br>
+				行路有良友，便是捷径<br>
+				带上我，一起去看更大的世界<br>
+				电话：15926214382<br>
+				邮箱：Mr_huang509@163.com
+			</p>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript" src='js/jquery.js'></script>
+<script type="text/javascript" src="js/jquery.fullPage.js"></script>
+<script type="text/javascript" src='js/content.js'></script>
+<script type="text/javascript" src="js/shCircleLoader.js"></script>
+<script type="text/javascript">
+window.onload=function(){
+
+$("#loading .shclProgress").shCircleLoader();
+var i = 0;
+setInterval(function() {
+    $("#loading .shclProgress").shCircleLoader('progress', i + '%');
+    i+=8;
+    if (i> 100){
+    	i=100;
+    	$("#loading").fadeOut(1000);
+    
+    };
+},100);
+
+}
+
+$(function(){
+	$('#content').fullpage({
+		anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
+		menu: '#menu,#menu1',
+		afterRender:function(){
+			$("#content .section .bg1").css({"margin-top":"-150px","transition":"2s","-webkit-transition":"2s","transition-delay":"2s","-webkit-transition-delay":"2s"})
+			$("#content .section .bg1 p").css({"opacity":"1","transition":"1s","-webkit-transition":"1s","transition-delay":"2.5s","-webkit-transition-delay":"2.5s"})
+			$("#content .section .bg1 span").css({"opacity":"1","transition":"1s","-webkit-transition":"1s","transition-delay":"3s","-webkit-transition-delay":"3s"})
+			$("#content .section .bg1 .jiantou").css({"opacity":"1","transition":"1s","-webkit-transition":"1s","transition-delay":"3.5s","-webkit-transition-delay":"3.5s"})
+		},
+		afterLoad:function(anchorLink, index){
+			if(index==1){
+			$("#content .section .bg1").css({"margin-top":"-150px","transition":"2s","-webkit-transition":"2s",})
+			$("#content .section .bg1 p").css({"opacity":"1","transition":"1s","-webkit-transition":"1s","transition-delay":"1s","-webkit-transition-delay":"1s"})
+			$("#content .section .bg1 span").css({"opacity":"1","transition":"1s","-webkit-transition":"1s","transition-delay":"1.5s","-webkit-transition-delay":"1.5s"})
+			$("#content .section .bg1 .jiantou").css({"opacity":"1","transition":"1s","-webkit-transition":"1s","transition-delay":"2s","-webkit-transition-delay":"2s"})
+			}
+		},
+		onLeave:function(index, direction){
+			if(index==1){
+			$("#content .section .bg1").css({"margin-top":"0px","transition":"2s","-webkit-transition":"2s"})
+			$("#content .section .bg1 p").css({"opacity":"0","transition":"1s","-webkit-transition":"1s"})
+			$("#content .section .bg1 span").css({"opacity":"0","transition":"1s","-webkit-transition":"1s"})
+			$("#content .section .bg1 .jiantou").css({"opacity":"0","transition":"1s","-webkit-transition":"1s"})
+		}
+		}
+	});
+});
+</script>
+</body>
+</html>

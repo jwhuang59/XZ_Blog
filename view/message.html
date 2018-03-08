@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- SEO关键字搜索 -->
+<meta name="keywords" content="jwhuang,戏子,戏子博客,jwhuang博客,个人博客,个人网站,个人主页,个人博客php源代码,基于php个人博客,戏子博客系统">
+<meta name="description" content="戏子博客,用jq+ajax+php+layui做的,简单方便,没有复杂的功能,就是一个简单个人展示博客">
+<meta name="author" content="jwhuang">
+<meta eta property="og:type" content="webpage" />
+<meta property="og:url" content="http://www.jwhuang.site" />
+<meta property="og:title" content="戏子的个人博客" />
+<meta property="og:description" content="一款简单的基于ajax+php+mysql的Blog网站" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>戏子博客-留言</title>
+<link rel="shortcut icon" href="../logo.ico"></link>
+<link rel="stylesheet" href="../admin/layui/css/layui.css" >
+<link rel="stylesheet" href="../static/css/main.css">
+<link rel="stylesheet" href="../static/css/share.css">
+<script type="text/javascript" src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=786876351&debug=true" charset="utf-8"></script>
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101457065" charset="utf-8"></script>
+</head>
+<body>
+<div class="wrapper">
+    <canvas id="canvas" height="120px"></canvas>
+    <canvas id="canvasbg" height="120px"></canvas>
+</div>
+<div class="nav">
+  <div class="nav-menu">
+  <div class="logo"><img src="../static/images/logo.png"></div>
+    <ul class="nav-left">
+      <li><a href="http://jwhuang.site" class="menu-warper"><span class="menu-warper-box"><span class="front">首页</span><span class="back">首页</span></span> </a></li>
+      <li><a href="article.html" class="menu-warper"><span class="menu-warper-box"><span class="front">Blog文章</span><span class="back">Blog文章</span></span></a>
+        <ul>
+          <li><a href="../articlelist/talk.html" class="menu-warper"><span class="menu-warper-box"><span class="front">浅谈</span><span class="back">浅谈</span></span> </a></li>
+          <li><a href="../articlelist/js.html" class="menu-warper"><span class="menu-warper-box"><span class="front">JavaScript</span><span class="back">JavaScript</span></span> </a></li>
+          <li><a href="../articlelist/php.html" class="menu-warper"><span class="menu-warper-box"><span class="front">PHP</span><span class="back">php</span></span> </a></li>
+          <li><a href="../articlelist/front.html" class="menu-warper"><span class="menu-warper-box"><span class="front">前端文档</span><span class="back">前端文档</span></span> </a></li>
+          <li><a href="../articlelist/after.html" class="menu-warper"><span class="menu-warper-box"><span class="front">后端文档</span><span class="back">后端文档</span></span> </a></li>
+        </ul>
+      </li>
+      <li><a href="share.html" class="menu-warper"><span class="menu-warper-box"><span class="front">分享</span><span class="back">分享</span></span> </a></li>
+      <li><a href="about.html" class="menu-warper"><span class="menu-warper-box"><span class="front">关于我</span><span class="back">关于我</span></span></a>
+        <ul>
+          <li><a href="resume/index.html" class="menu-warper"><span class="menu-warper-box"><span class="front">个人简历</span><span class="back">个人简历</span></span> </a></li>
+          
+        </ul>
+      </li>
+      <li><a href="message.html" class="menu-warper"><span class="menu-warper-box active"><span class="front">留言</span><span class="back">留言</span></span> </a></li>
+    </ul>
+    <div class="nav-right">
+      <a>搜索</a>
+      <div class="search">
+        <span>×</span>
+        <form action="search.html" mothod="get">
+          <input type="text" class="text" name="keyword" placeholder="输入关键词搜索" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="share">
+    <div class="breadcrumb_nav">
+        <span class="breadcrumb">
+          <a href="http://jwhuang.site">首页</a> —
+          <label>留言</label>
+        </span>
+    </div>
+    <div class="wrap">
+      <div class="wrap_msg">
+          <h2>有什么想说的，请给我留言哦！</h2>
+          <div class="msg">
+            <textarea class="layui-textarea" id="text"></textarea>
+          </div>
+          <div class="msg_btn">
+            <div class="site-demo-button btn">
+                <button class="layui-btn site-demo-layedit" data-type="content">提交</button>
+            </div> 
+            <div class="user">
+                <a class="img" href="javascript:void(0);"><img src=""></a>
+                <a class="name" href="javascript:void(0);"></a>
+                <a class="loginout" href="">退出</a>
+            </div>
+          </div>
+          <h1>评论()</h1>
+          <ul class="comment">
+            
+          </ul>
+
+
+          <div class="login">
+              <div class="login_title">
+                  <p>请先登录哦！</p>
+                  <span>×</span>
+              </div>
+              <div class="tips">
+                  <html xmlns:wb=“http://open.weibo.com/wb”>
+                  <span id="wb_connect_btn">微博登录按钮</span>
+                  <span id="qqLoginBtn"></span>
+              </div>       
+          </div>
+          <div class="shade"></div>
+          
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<ul class="layui-fixbar">
+  
+    <li class="layui-icon top">&#xe604;</li>
+</ul>
+<div class="footer">
+    <p><i class="layui-icon">&#xe68e;</i> 博客空间 <a href="http://jwhuang.site">jwhuang.site</a></p>
+    <p>Copyright © 2018 <a href="http://jwhuang.site">jwhuang</a> &  版权所有  | <a href="https://github.com/jwhuang59/XZ_Blog" target="_black">网站源码Github</a></p>
+    <p>鄂ICP备16024346号</p>
+</div>
+
+<script type="text/javascript" src='../static/js/jquery.js'></script>
+<script type="text/javascript" src="../admin/layui/layui.js"></script>
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/msg.js"></script>
+</body>
+</html>

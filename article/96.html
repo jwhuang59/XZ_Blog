@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- SEO关键字搜索 -->
+<meta name="keywords" content="jwhuang,戏子,戏子博客,jwhuang博客,个人博客,个人网站,个人主页,个人博客php源代码,基于php个人博客,戏子博客系统">
+<meta name="description" content="戏子博客,用jq+ajax+php+layui做的,简单方便,没有复杂的功能,就是一个简单个人展示博客">
+<meta name="author" content="jwhuang">
+<meta eta property="og:type" content="webpage" />
+<meta property="og:url" content="http://www.jwhuang.site" />
+<meta property="og:title" content="戏子的个人博客" />
+<meta property="og:description" content="一款简单的基于ajax+php+mysql的Blog网站" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>编写自己的PHP MVC框架实例教程(转)</title>
+<link rel="shortcut icon" href="../logo.ico"></link>
+<link rel="stylesheet" href="../admin/layui/css/layui.css" >
+<link rel="stylesheet" href="../static/css/public.css">
+<link rel="stylesheet" href="../static/css/main.css">
+<link rel="stylesheet" href="../static/css/article.css"> 
+</head>
+<body>
+<div class="wrapper">
+    <canvas id="canvas" height="120px"></canvas>
+    <canvas id="canvasbg" height="120px"></canvas>
+</div>
+<div class="nav">
+  <div class="nav-menu">
+  <div class="logo"><img src="../static/images/logo.png"></div>
+    <ul class="nav-left">
+      <li><a href="http://jwhuang.site" class="menu-warper"><span class="menu-warper-box"><span class="front">首页</span><span class="back">首页</span></span> </a></li>
+      <li><a href="../view/article.html" class="menu-warper"><span class="menu-warper-box active"><span class="front">Blog文章</span><span class="back">Blog文章</span></span></a>
+        <ul>
+          <li><a href="../articlelist/talk.html" class="menu-warper"><span class="menu-warper-box"><span class="front">浅谈</span><span class="back">浅谈</span></span> </a></li>
+          <li><a href="../articlelist/js.html" class="menu-warper"><span class="menu-warper-box"><span class="front">JavaScript</span><span class="back">JavaScript</span></span> </a></li>
+          <li><a href="../articlelist/php.html" class="menu-warper"><span class="menu-warper-box"><span class="front">PHP</span><span class="back">php</span></span> </a></li>
+          <li><a href="../articlelist/front.html" class="menu-warper"><span class="menu-warper-box"><span class="front">前端文档</span><span class="back">前端文档</span></span> </a></li>
+          <li><a href="../articlelist/after.html" class="menu-warper"><span class="menu-warper-box"><span class="front">后端文档</span><span class="back">后端文档</span></span> </a></li>
+        </ul>
+      </li>
+      <li><a href="../view/share.html" class="menu-warper"><span class="menu-warper-box"><span class="front">分享</span><span class="back">分享</span></span> </a></li>
+      <li><a href="../view/about.html" class="menu-warper"><span class="menu-warper-box"><span class="front">关于我</span><span class="back">关于我</span></span></a>
+        <ul>
+          <li><a href="../view/resume/index.html" class="menu-warper"><span class="menu-warper-box"><span class="front">个人简历</span><span class="back">个人简历</span></span> </a></li>
+          
+        </ul>
+      </li>
+      <li><a href="../view/message.html" class="menu-warper"><span class="menu-warper-box"><span class="front">留言</span><span class="back">留言</span></span> </a></li>
+    </ul>
+    <div class="nav-right">
+      <a>搜索</a>
+      <div class="search">
+        <span>×</span>
+        <form action="../view/search.html" mothod="get">
+          <input type="text" class="text" name="keyword" placeholder="输入关键词搜索" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="main-left">
+    <div class="breadcrumb_nav">
+        <span class="breadcrumb">
+          <a href="http://jwhuang.site">首页</a> —
+          <a href="../view/article.html">Blog文章</a> —
+          <a href="../articlelist/after.html">后端文档</a> —
+          <label>编写自己的PHP MVC框架实例教程(转)</label>
+        </span>
+    </div>
+    <div class="article">
+        <h2 class="h2">编写自己的PHP MVC框架实例教程(转)</h2>
+        <div class="art_msg">
+            <span>发布时间：<label class="msg_date">2018-02-26 16:26:37</label></span>
+            <span>浏览量：<label class="msg_browse browse"></label></span>
+            <span>评论数：<label class="msg_browse"><span id = "sourceId::96" class = "cy_cmt_count" style="display:inline"></span></label></span>
+        </div>
+        <div class="art_text">
+            <p>
+
+<h2 style="font-style:normal">1&nbsp;什么是MVC</h2>
+
+<p><strong>MVC模式</strong>（Model-View-Controller）是软件工程中的一种<strong>软件架构模式</strong>。</p>
+
+<p>MVC把软件系统分为三个基本部分：<strong>模型</strong>（Model）、<strong>视图</strong>（View）和<strong>控制器</strong>（Controller）。</p>
+
+<p>PHP中MVC模式也称<strong>Web MVC</strong>，从上世纪70年代进化而来。</p>
+
+<p>MVC的目的是实现一种动态的程序设计，<strong>便于后续对程序的修改和扩展简化</strong>，并且使程序某一部分的重复利用成为可能。</p>
+
+<p>除此之外，此模式通过对复杂度的简化，使程序结构更加直观。</p>
+
+<p>MVC各部分的职能：</p>
+
+<ul>
+	<li><strong>模型Model</strong>&nbsp;&ndash; 管理<strong>大部分的业务逻辑</strong>和<strong>所有的数据库逻辑</strong>。模型提供了连接和操作<strong>数据库</strong>的抽象层。</li>
+	<li><strong>控制器Controller</strong>&nbsp;- 负责<strong>响应用户请求</strong>、<strong>准备数据</strong>，以及决定如何展示数据。</li>
+	<li><strong>视图View</strong>&nbsp;&ndash; 负责<strong>渲染数据</strong>，通过HTML方式呈现给用户。</li>
+</ul>
+
+<p><img alt="MVC流程图" src="https://www.awaimai.com/wp-content/uploads/2017/10/web_mvc.gif" style="border-style:none; height:auto; width:500px" /></p>
+
+<p>一个典型的Web MVC流程：</p>
+
+<ol>
+	<li>Controller截获用户发出的请求；</li>
+	<li>Controller调用Model完成状态的读写操作；</li>
+	<li>Controller把数据传递给View；</li>
+	<li>View渲染最终结果并呈献给用户。</li>
+</ol>
+
+<h2 style="font-style:normal">2&nbsp;为什么要自己开发MVC框架</h2>
+
+<p>网络上有大量优秀的MVC框架可供使用，本教程并不是为了开发一个全面的、终极的MVC框架解决方案。</p>
+
+<p>我们将它看作是一个很好的从内部学习PHP的机会。</p>
+
+<p>在此过程中，你将学习<strong>面向对象编程</strong>和<strong>MVC设计模式</strong>，并学习到开发中的一些注意事项。</p>
+
+<p>更重要的是，通过自制MVC框架，每个人都可以完全控制自己的框架，将你的想法融入到你的框架中。</p>
+
+<p>这不是很美妙的事情吗~~~</p>
+
+<h2 style="font-style:normal">3&nbsp;准备工作</h2>
+
+<h3 style="color:#428bd1; font-style:normal">3.1&nbsp;环境准备</h3>
+
+<p>这里我们需要最基本的PHP环境：</p>
+
+<ul>
+	<li>Nginx或Apache</li>
+	<li>PHP5.4+</li>
+	<li>MySQL</li>
+</ul>
+
+<p>推荐使用<a href="https://www.awaimai.com/67.html">phpStudy</a>或<a href="https://www.awaimai.com/2120.html">docker</a>一键安装这样的LNMP环境。</p>
+
+<h3 style="color:#428bd1; font-style:normal">3.2 代码规范</h3>
+
+<p>在目录设置好以后，我们接下来规定代码的规范：</p>
+
+<ol>
+	<li>MySQL的表名需<strong>小写</strong>或<strong>小写加下划线</strong>，如：<code>item</code>，<code>car_orders</code>。</li>
+	<li>模块名（Models）需用<strong>大驼峰命名法</strong>，即首字母<strong>大写</strong>，并在名称后添加<code>Model</code>，如：<code>ItemModel</code>，<code>CarModel</code>。</li>
+	<li>控制器（Controllers）需用<strong>大驼峰命名法</strong>，即首字母<strong>大写</strong>，并在名称后添加<code>Controller</code>，如：<code>ItemController</code>，<code>CarController</code>。</li>
+	<li>方法名（Action）需用<strong>小驼峰命名法</strong>，即首字母<strong>小写</strong>，如：<code>index</code>，<code>indexPost</code>。</li>
+	<li>视图（Views）部署结构为<strong>控制器名/行为名</strong>，如：<code>item/view.php</code>，<code>car/buy.php</code>。</li>
+</ol>
+
+<p>上述规则是为了程序能更好地相互调用。</p>
+
+<p>接下来就开始真正的PHP MVC编程了。</p>
+
+<h3 style="color:#428bd1; font-style:normal">3.3 目录准备</h3>
+
+<p>在开始开发前，我们给这个框架先起个名字吧，就叫：<strong>Fastphp框架</strong>。</p>
+
+<p>然后根据需要来把项目的目录创建。</p>
+
+<p>假设我们建立的项目为 <strong>project</strong>，目录结构就这样：</p>
+
+<pre>
+project                 WEB部署根目录
+├─app                   应用目录
+│  ├─controllers        控制器目录
+│  ├─models             模块目录
+│  ├─views              视图目录
+├─config                配置文件目录
+├─fastphp               框架核心目录
+│ ├─base                MVC基类目录
+│ ├─db                  数据库操作类目录
+│ ├─Fastphp.php         内核文件  
+├─static                静态文件目录
+├─index.php             入口文件</pre>
+
+<p>然后按照下一步，把Nginx或者Apache的站点根目录配置到<code>project</code>目录，。</p>
+
+<h3 style="color:#428bd1; font-style:normal">3.4 重定向</h3>
+
+<p>重定向的目的有两个：设置根目录为<code>project</code>所在位置，以及将所有请求都发送给&nbsp;index.php 文件。</p>
+
+<p>如果是<strong>Apache服务器</strong>，在 project 目录下新建一个<strong> .htaccess&nbsp;</strong>文件，内容为：</p>
+
+<pre>
+&lt;IfModule mod_rewrite.c&gt;
+    # 打开Rerite功能
+    RewriteEngine On
+
+    # 如果请求的是真实存在的文件或目录，直接访问
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # 如果访问的文件或目录不是真事存在，分发请求至 index.php
+    RewriteRule . index.php
+&lt;/IfModule&gt;</pre>
+
+<p>如果是Nginx服务器，修改配置文件，在<code>server</code>块中加入如下的重定向：</p>
+
+<pre>
+location / {
+    # 重新向所有非真是存在的请求到index.php
+    try_files $uri $uri/ /index.php$args;
+}</pre>
+
+<p>这样做的主要原因是：</p>
+
+<p>（1）<strong>静态文件能直接访问。</strong></p>
+
+<p>如果文件或者目录真实存在，则直接访问存在的文件/目录。</p>
+
+<p>比如，静态文件<code>static/css/main.css</code>真实存在，就可以直接访问它。</p>
+
+<p><strong>（2）程序有单一的入口</strong>。</p>
+
+<p>这种情况是请求地址不是真实存在的文件或目录，这样请求就会传到&nbsp;<strong>index.php</strong>&nbsp;上。</p>
+
+<p>例如，访问地址：<code>localhost/item/detail/1</code>，在文件系统中并不存在这样的文件或目录。</p>
+
+<p>那么，Apache或Nginx服务器会把请求发给<code>index.php</code>，并且把域名之后的字符串赋值给<code>REQUEST_URI</code>变量。</p>
+
+<p>这样在PHP中用<code>$_SERVER[&#39;REQUEST_URI&#39;]</code>就能拿到<code>/item/detail/1</code>；</p>
+
+<p>（3）<strong>可以用来生成美化的URL，利于SEO</strong>。</p>
+
+<h2 style="font-style:normal">4 PHP MVC核心文件</h2>
+
+<h3 style="color:#428bd1; font-style:normal">4.1 入口文件</h3>
+
+<p>接下来，在 project 目录下新建&nbsp;<strong>index.php</strong>&nbsp;入口文件，文件内容为：</p>
+
+<pre>
+&lt;?php
+// 应用目录为当前目录
+define(&#39;APP_PATH&#39;, __DIR__ . &#39;/&#39;);
+
+// 开启调试模式
+define(&#39;APP_DEBUG&#39;, true);
+
+// 加载框架文件
+require(APP_PATH . &#39;fastphp/Fastphp.php&#39;);
+
+// 加载配置文件
+$config = require(APP_PATH . &#39;config/config.php&#39;);
+
+// 实例化框架类
+(new fastphpFastphp($config))-&gt;run();</pre>
+
+<p>注意，上面的PHP代码中，并没有添加PHP结束符号<code>?&gt;</code>。</p>
+
+<p>这么做的主要原因是：</p>
+
+<p>对于只有 PHP 代码的文件，最好没有结束标志<code>?&gt;</code>，</p>
+
+<p>PHP自身并不需要结束符号，不加结束符让程序更加安全，很大程度防止了末尾被注入额外的内容。</p>
+
+<h3 style="color:#428bd1; font-style:normal">4.2 配置文件</h3>
+
+<p>在入口文件中，我们加载了config.php文件的内容，那它有何作用呢？</p>
+
+<p>从名称不难看出，它的作用是<strong>保存一些常用配置</strong>。</p>
+
+<p><strong>config.php&nbsp;</strong>文件内容如下，作用是定义数据库连接参数参数，以及配置默认控制器名和操作名：</p>
+
+<pre>
+&lt;?php
+
+// 数据库配置
+$config[&#39;db&#39;][&#39;host&#39;] = &#39;localhost&#39;;
+$config[&#39;db&#39;][&#39;username&#39;] = &#39;root&#39;;
+$config[&#39;db&#39;][&#39;password&#39;] = &#39;123456&#39;;
+$config[&#39;db&#39;][&#39;dbname&#39;] = &#39;project&#39;;
+
+// 默认控制器和操作名
+$config[&#39;defaultController&#39;] = &#39;Item&#39;;
+$config[&#39;defaultAction&#39;] = &#39;index&#39;;
+
+return $config;</pre>
+
+<p>入口中的<code>$config</code>变量接收到配置参数后，再传给框架的核心类，也就是<code>Fastphp</code>类。</p>
+
+<h3 style="color:#428bd1; font-style:normal">4.3 框架核心类</h3>
+
+<p>入口文件对框架类做了两步操作：<strong>实例化</strong>，<strong>调用run()方法</strong>。</p>
+
+<p>实例化操作接受<code>$config</code>参数配置，并保存到对象属性中。</p>
+
+<p><code>run()</code>方法则调用用类自身方法，完成下面几个操作：</p>
+
+<ol>
+	<li><strong>类自动加载</strong></li>
+	<li><strong>环境检查</strong></li>
+	<li><strong>过滤敏感字符</strong></li>
+	<li><strong>移除全局变量的老用法</strong></li>
+	<li><strong>路由处理</strong></li>
+</ol>
+
+<p>在<code>fastphp</code>目录下新建核心类文件，名称<strong>Fastphp.php</strong>，代码：</p>
+
+<pre>
+&lt;?php
+namespace fastphp;
+
+// 框架根目录
+defined(&#39;CORE_PATH&#39;) or define(&#39;CORE_PATH&#39;, __DIR__);
+
+/**
+ * fastphp框架核心
+ */
+class Fastphp
+{
+    // 配置内容
+    protected $config = [];
+
+    public function __construct($config)
+    {
+        $this-&gt;config = $config;
+    }
+
+    // 运行程序
+    public function run()
+    {
+        spl_autoload_register(array($this, &#39;loadClass&#39;));
+        $this-&gt;setReporting();
+        $this-&gt;removeMagicQuotes();
+        $this-&gt;unregisterGlobals();
+        $this-&gt;setDbConfig();
+        $this-&gt;route();
+    }
+
+    // 路由处理
+    public function route()
+    {
+        $controllerName = $this-&gt;config[&#39;defaultController&#39;];
+        $actionName = $this-&gt;config[&#39;defaultAction&#39;];
+        $param = array();
+
+        $url = $_SERVER[&#39;REQUEST_URI&#39;];
+        // 清除?之后的内容
+        $position = strpos($url, &#39;?&#39;);
+        $url = $position === false ? $url : substr($url, 0, $position);
+        // 删除前后的&ldquo;/&rdquo;
+        $url = trim($url, &#39;/&#39;);
+
+        if ($url) {
+            // 使用&ldquo;/&rdquo;分割字符串，并保存在数组中
+            $urlArray = explode(&#39;/&#39;, $url);
+            // 删除空的数组元素
+            $urlArray = array_filter($urlArray);
+            
+            // 获取控制器名
+            $controllerName = ucfirst($urlArray[0]);
+            
+            // 获取动作名
+            array_shift($urlArray);
+            $actionName = $urlArray ? $urlArray[0] : $actionName;
+            
+            // 获取URL参数
+            array_shift($urlArray);
+            $param = $urlArray ? $urlArray : array();
+        }
+
+        // 判断控制器和操作是否存在
+        $controller = &#39;appcontrollers&#39;. $controllerName . &#39;Controller&#39;;
+        if (!class_exists($controller)) {
+            exit($controller . &#39;控制器不存在&#39;);
+        }
+        if (!method_exists($controller, $actionName)) {
+            exit($actionName . &#39;方法不存在&#39;);
+        }
+
+        // 如果控制器和操作名存在，则实例化控制器，因为控制器对象里面
+        // 还会用到控制器名和操作名，所以实例化的时候把他们俩的名称也
+        // 传进去。结合Controller基类一起看
+        $dispatch = new $controller($controllerName, $actionName);
+
+        // $dispatch保存控制器实例化后的对象，我们就可以调用它的方法，
+        // 也可以像方法中传入参数，以下等同于：$dispatch-&gt;$actionName($param)
+        call_user_func_array(array($dispatch, $actionName), $param);
+    }
+
+    // 检测开发环境
+    public function setReporting()
+    {
+        if (APP_DEBUG === true) {
+            error_reporting(E_ALL);
+            ini_set(&#39;display_errors&#39;,&#39;On&#39;);
+        } else {
+            error_reporting(E_ALL);
+            ini_set(&#39;display_errors&#39;,&#39;Off&#39;);
+            ini_set(&#39;log_errors&#39;, &#39;On&#39;);
+        }
+    }
+
+    // 删除敏感字符
+    public function stripSlashesDeep($value)
+    {
+        $value = is_array($value) ? array_map(array($this, &#39;stripSlashesDeep&#39;), $value) : stripslashes($value);
+        return $value;
+    }
+
+    // 检测敏感字符并删除
+    public function removeMagicQuotes()
+    {
+        if (get_magic_quotes_gpc()) {
+            $_GET = isset($_GET) ? $this-&gt;stripSlashesDeep($_GET ) : &#39;&#39;;
+            $_POST = isset($_POST) ? $this-&gt;stripSlashesDeep($_POST ) : &#39;&#39;;
+            $_COOKIE = isset($_COOKIE) ? $this-&gt;stripSlashesDeep($_COOKIE) : &#39;&#39;;
+            $_SESSION = isset($_SESSION) ? $this-&gt;stripSlashesDeep($_SESSION) : &#39;&#39;;
+        }
+    }
+
+    // 检测自定义全局变量并移除。因为 register_globals 已经弃用，如果
+    // 已经弃用的 register_globals 指令被设置为 on，那么局部变量也将
+    // 在脚本的全局作用域中可用。 例如， $_POST[&#39;foo&#39;] 也将以 $foo 的
+    // 形式存在，这样写是不好的实现，会影响代码中的其他变量。 相关信息，
+    // 参考: http://php.net/manual/zh/faq.using.php#faq.register-globals
+    public function unregisterGlobals()
+    {
+        if (ini_get(&#39;register_globals&#39;)) {
+            $array = array(&#39;_SESSION&#39;, &#39;_POST&#39;, &#39;_GET&#39;, &#39;_COOKIE&#39;, &#39;_REQUEST&#39;, &#39;_SERVER&#39;, &#39;_ENV&#39;, &#39;_FILES&#39;);
+            foreach ($array as $value) {
+                foreach ($GLOBALS[$value] as $key =&gt; $var) {
+                    if ($var === $GLOBALS[$key]) {
+                        unset($GLOBALS[$key]);
+                    }
+                }
+            }
+        }
+    }
+
+    // 配置数据库信息
+    public function setDbConfig()
+    {
+        if ($this-&gt;config[&#39;db&#39;]) {
+            define(&#39;DB_HOST&#39;, $this-&gt;config[&#39;db&#39;][&#39;host&#39;]);
+            define(&#39;DB_NAME&#39;, $this-&gt;config[&#39;db&#39;][&#39;dbname&#39;]);
+            define(&#39;DB_USER&#39;, $this-&gt;config[&#39;db&#39;][&#39;username&#39;]);
+            define(&#39;DB_PASS&#39;, $this-&gt;config[&#39;db&#39;][&#39;password&#39;]);
+        }
+    }
+
+    // 自动加载类
+    public function loadClass($className)
+    {
+        $classMap = $this-&gt;classMap();
+
+        if (isset($classMap[$className])) {
+            // 包含内核文件
+            $file = $classMap[$className];
+        } elseif (strpos($className, &#39;&#39;) !== false) {
+            // 包含应用（application目录）文件
+            $file = APP_PATH . str_replace(&#39;&#39;, &#39;/&#39;, $className) . &#39;.php&#39;;
+            if (!is_file($file)) {
+                return;
+            }
+        } else {
+            return;
+        }
+
+        include $file;
+
+        // 这里可以加入判断，如果名为$className的类、接口或者性状不存在，则在调试模式下抛出错误
+    }
+
+    // 内核文件命名空间映射关系
+    protected function classMap()
+    {
+        return [
+            &#39;fastphpaseController&#39; =&gt; CORE_PATH . &#39;/base/Controller.php&#39;,
+            &#39;fastphpaseModel&#39; =&gt; CORE_PATH . &#39;/base/Model.php&#39;,
+            &#39;fastphpaseView&#39; =&gt; CORE_PATH . &#39;/base/View.php&#39;,
+            &#39;fastphpdbDb&#39; =&gt; CORE_PATH . &#39;/db/Db.php&#39;,
+            &#39;fastphpdbSql&#39; =&gt; CORE_PATH . &#39;/db/Sql.php&#39;,
+        ];
+    }
+}</pre>
+
+<p>下面重点讲解主请求方法<code> route()</code>，它也称<strong>路由方法</strong>。</p>
+
+<p>路由方法的主要作用是：<strong>截取URL，并解析出控制器名、方法名和URL参数</strong>。</p>
+
+<p>假设我们的 URL 是这样：</p>
+
+<pre>
+yoursite.com/controllerName/actionName/queryString</pre>
+
+<p>当浏览器访问上面的URL，<code>route()</code>从全局变量 <code>$_SERVER[&#39;REQUEST_URI&#39;]</code>中获取到字符串<code>/controllerName/actionName/queryString</code>。</p>
+
+<p>然后，会将这个字符串分割成三部分：<code>controllerName</code>、<code>actionName</code> 和 <code>queryString</code>。</p>
+
+<p>例如，URL链接为：yoursite.com/item/detail/1/hello，那么<code>route()</code>分割之后，</p>
+
+<ul>
+	<li>ControllerName名就是：<strong>item</strong></li>
+	<li>actionName名就是：<strong>detail</strong></li>
+	<li>URL参数就是：<strong>array(1, hello)</strong></li>
+</ul>
+
+<p>分割完成后，路由方法再实例化控制器：<code>itemController</code>，并调用其中的<code>detail</code>方法 。</p>
+
+<h3 style="color:#428bd1; font-style:normal">4.4 Controller基类</h3>
+
+<p>接下来，就是在 <strong>fastphp&nbsp;</strong>中创建MVC基类，包括<strong>控制器</strong>、<strong>模型</strong>和<strong>视图</strong>三个基类。</p>
+
+<p>在<code>fastphp/base/</code>目录下新建<strong>控制器基类</strong>，文件名&nbsp;<strong>Controller.php</strong>，功能就是总调度，内容如下：</p>
+
+<pre>
+&lt;?php
+namespace fastphpase;
+
+/**
+ * 控制器基类
+ */
+class Controller
+{
+    protected $_controller;
+    protected $_action;
+    protected $_view;
+
+    // 构造函数，初始化属性，并实例化对应模型
+    public function __construct($controller, $action)
+    {
+        $this-&gt;_controller = $controller;
+        $this-&gt;_action = $action;
+        $this-&gt;_view = new View($controller, $action);
+    }
+
+    // 分配变量
+    public function assign($name, $value)
+    {
+        $this-&gt;_view-&gt;assign($name, $value);
+    }
+
+    // 渲染视图
+    public function render()
+    {
+        $this-&gt;_view-&gt;render();
+    }
+}</pre>
+
+<p><code>Controller</code> 类用<code>assign()</code>方法实现<strong>把变量保存到View对象中</strong>。</p>
+
+<p>这样，在调用<code>$this-&gt;render()</code>&nbsp;后视图文件就能显示这些变量。</p>
+
+<h3 style="color:#428bd1; font-style:normal">4.5 Model基类</h3>
+
+<p>新建模型基类，继承自数据库操作类<code>Sql</code>类。</p>
+
+<p>因为数据库操作比较复杂，所以SQL操作我们单独创建一个类。</p>
+
+<p><code>Model</code>基类涉及到3个类：<code>Model</code>基类本身，它的父类<code>SQL</code>，以及提供数据库连接句柄的<code>Db</code>类。</p>
+
+<p>在<code>fastphp/base/</code>目录下新建模型基类文件，名为 <strong>Model.php</strong>，代码如下：</p>
+
+<pre>
+&lt;?php
+namespace fastphpase;
+
+use fastphpdbSql;
+
+class Model extends Sql
+{
+    protected $model;
+
+    public function __construct()
+    {
+        // 获取数据库表名
+        if (!$this-&gt;table) {
+
+            // 获取模型类名称
+            $this-&gt;model = get_class($this);
+
+            // 删除类名最后的 Model 字符
+            $this-&gt;model = substr($this-&gt;model, 0, -5);
+
+            // 数据库表名与类名一致
+            $this-&gt;table = strtolower($this-&gt;model);
+        }
+    }
+}</pre>
+
+<p>在<code>fastphp/db/</code>目录下建立一个数据库基类 <strong>Sql.php</strong>，代码如下：</p>
+
+<pre>
+&lt;?php
+namespace fastphpdb;
+
+use PDOStatement;
+
+class Sql
+{
+    // 数据库表名
+    protected $table;
+
+    // 数据库主键
+    protected $primary = &#39;id&#39;;
+
+    // WHERE和ORDER拼装后的条件
+    private $filter = &#39;&#39;;
+
+    // Pdo bindParam()绑定的参数集合
+    private $param = array();
+
+    /**
+     * 查询条件拼接，使用方式：
+     *
+     * $this-&gt;where([&#39;id = 1&#39;,&#39;and title=&quot;Web&quot;&#39;, ...])-&gt;fetch();
+     * 为防止注入，建议通过$param方式传入参数：
+     * $this-&gt;where([&#39;id = :id&#39;], [&#39;:id&#39; =&gt; $id])-&gt;fetch();
+     *
+     * @param array $where 条件
+     * @return $this 当前对象
+     */
+    public function where($where = array(), $param = array())
+    {
+        if ($where) {
+            $this-&gt;filter .= &#39; WHERE &#39;;
+            $this-&gt;filter .= implode(&#39; &#39;, $where);
+
+            $this-&gt;param = $param;
+        }
+
+        return $this;
+    }
+
+    /**
+     * 拼装排序条件，使用方式：
+     *
+     * $this-&gt;order([&#39;id DESC&#39;, &#39;title ASC&#39;, ...])-&gt;fetch();
+     *
+     * @param array $order 排序条件
+     * @return $this
+     */
+    public function order($order = array())
+    {
+        if($order) {
+            $this-&gt;filter .= &#39; ORDER BY &#39;;
+            $this-&gt;filter .= implode(&#39;,&#39;, $order);
+        }
+
+        return $this;
+    }
+
+    // 查询所有
+    public function fetchAll()
+    {
+        $sql = sprintf(&quot;select * from `%s` %s&quot;, $this-&gt;table, $this-&gt;filter);
+        $sth = Db::pdo()-&gt;prepare($sql);
+        $sth = $this-&gt;formatParam($sth, $this-&gt;param);
+        $sth-&gt;execute();
+
+        return $sth-&gt;fetchAll();
+    }
+
+    // 查询一条
+    public function fetch()
+    {
+        $sql = sprintf(&quot;select * from `%s` %s&quot;, $this-&gt;table, $this-&gt;filter);
+        $sth = Db::pdo()-&gt;prepare($sql);
+        $sth = $this-&gt;formatParam($sth, $this-&gt;param);
+        $sth-&gt;execute();
+
+        return $sth-&gt;fetch();
+    }
+
+    // 根据条件 (id) 删除
+    public function delete($id)
+    {
+        $sql = sprintf(&quot;delete from `%s` where `%s` = :%s&quot;, $this-&gt;table, $this-&gt;primary, $this-&gt;primary);
+        $sth = Db::pdo()-&gt;prepare($sql);
+        $sth = $this-&gt;formatParam($sth, [$this-&gt;primary =&gt; $id]);
+        $sth-&gt;execute();
+
+        return $sth-&gt;rowCount();
+    }
+
+    // 新增数据
+    public function add($data)
+    {
+        $sql = sprintf(&quot;insert into `%s` %s&quot;, $this-&gt;table, $this-&gt;formatInsert($data));
+        $sth = Db::pdo()-&gt;prepare($sql);
+        $sth = $this-&gt;formatParam($sth, $data);
+        $sth = $this-&gt;formatParam($sth, $this-&gt;param);
+        $sth-&gt;execute();
+
+        return $sth-&gt;rowCount();
+    }
+
+    // 修改数据
+    public function update($data)
+    {
+        $sql = sprintf(&quot;update `%s` set %s %s&quot;, $this-&gt;table, $this-&gt;formatUpdate($data), $this-&gt;filter);
+        $sth = Db::pdo()-&gt;prepare($sql);
+        $sth = $this-&gt;formatParam($sth, $data);
+        $sth = $this-&gt;formatParam($sth, $this-&gt;param);
+        $sth-&gt;execute();
+
+        return $sth-&gt;rowCount();
+    }
+
+    /**
+     * 占位符绑定具体的变量值
+     * @param PDOStatement $sth 要绑定的PDOStatement对象
+     * @param array $params 参数，有三种类型：
+     * 1）如果SQL语句用问号?占位符，那么$params应该为
+     *    [$a, $b, $c]
+     * 2）如果SQL语句用冒号:占位符，那么$params应该为
+     *    [&#39;a&#39; =&gt; $a, &#39;b&#39; =&gt; $b, &#39;c&#39; =&gt; $c]
+     *    或者
+     *    [&#39;:a&#39; =&gt; $a, &#39;:b&#39; =&gt; $b, &#39;:c&#39; =&gt; $c]
+     *
+     * @return PDOStatement
+     */
+    public function formatParam(PDOStatement $sth, $params = array())
+    {
+        foreach ($params as $param =&gt; &amp;$value) {
+            $param = is_int($param) ? $param + 1 : &#39;:&#39; . ltrim($param, &#39;:&#39;);
+            $sth-&gt;bindParam($param, $value);
+        }
+
+        return $sth;
+    }
+
+    // 将数组转换成插入格式的sql语句
+    private function formatInsert($data)
+    {
+        $fields = array();
+        $names = array();
+        foreach ($data as $key =&gt; $value) {
+            $fields[] = sprintf(&quot;`%s`&quot;, $key);
+            $names[] = sprintf(&quot;:%s&quot;, $key);
+        }
+
+        $field = implode(&#39;,&#39;, $fields);
+        $name = implode(&#39;,&#39;, $names);
+
+        return sprintf(&quot;(%s) values (%s)&quot;, $field, $name);
+    }
+
+    // 将数组转换成更新格式的sql语句
+    private function formatUpdate($data)
+    {
+        $fields = array();
+        foreach ($data as $key =&gt; $value) {
+            $fields[] = sprintf(&quot;`%s` = :%s&quot;, $key, $key);
+        }
+
+        return implode(&#39;,&#39;, $fields);
+    }
+}</pre>
+
+<p>应该说，<strong>Sql基类是框架的核心部分</strong>。为什么？</p>
+
+<p>因为通过它，我们创建了一个 SQL 抽象层，可以大大减少了数据库的编程工作。</p>
+
+<p>虽然 PDO 接口本来已经很简洁，但是抽象之后框架的可灵活性更高。</p>
+
+<p><code>Sql</code>类里面有用到<code>Db:pdo()</code>方法，这是我们创建的<code>Db</code>类，它提供一个PDO单例。</p>
+
+<p>在<code>fastphp/db/</code>目录下创建<strong>Db.php</strong>文件，内容：</p>
+
+<pre>
+&lt;?php
+namespace fastphpdb;
+
+use PDO;
+use PDOException;
+
+/**
+ * 数据库操作类。
+ * 其$pdo属性为静态属性，所以在页面执行周期内，
+ * 只要一次赋值，以后的获取还是首次赋值的内容。
+ * 这里就是PDO对象，这样可以确保运行期间只有一个
+ * 数据库连接对象，这是一种简单的单例模式
+ * Class Db
+ */
+class Db
+{
+    private static $pdo = null;
+
+    public static function pdo()
+    {
+        if (self::$pdo !== null) {
+            return self::$pdo;
+        }
+
+        try {
+            $dsn    = sprintf(&#39;mysql:host=%s;dbname=%s;charset=utf8&#39;, DB_HOST, DB_NAME);
+            $option = array(PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC);
+
+            return self::$pdo = new PDO($dsn, DB_USER, DB_PASS, $option);
+        } catch (PDOException $e) {
+            exit($e-&gt;getMessage());
+        }
+    }
+}</pre>
+
+<h3 style="color:#428bd1; font-style:normal">4.6 View基类</h3>
+
+<p>在<code>fastphp/base/</code>目录下新建视图基类 <strong>View.php</strong> 内容如下：</p>
+
+<pre>
+&lt;?php
+namespace fastphpase;
+
+/**
+ * 视图基类
+ */
+class View
+{
+    protected $variables = array();
+    protected $_controller;
+    protected $_action;
+
+    function __construct($controller, $action)
+    {
+        $this-&gt;_controller = strtolower($controller);
+        $this-&gt;_action = strtolower($action);
+    }
+ 
+    // 分配变量
+    public function assign($name, $value)
+    {
+        $this-&gt;variables[$name] = $value;
+    }
+ 
+    // 渲染显示
+    public function render()
+    {
+        extract($this-&gt;variables);
+        $defaultHeader = APP_PATH . &#39;app/views/header.php&#39;;
+        $defaultFooter = APP_PATH . &#39;app/views/footer.php&#39;;
+
+        $controllerHeader = APP_PATH . &#39;app/views/&#39; . $this-&gt;_controller . &#39;/header.php&#39;;
+        $controllerFooter = APP_PATH . &#39;app/views/&#39; . $this-&gt;_controller . &#39;/footer.php&#39;;
+        $controllerLayout = APP_PATH . &#39;app/views/&#39; . $this-&gt;_controller . &#39;/&#39; . $this-&gt;_action . &#39;.php&#39;;
+
+        // 页头文件
+        if (is_file($controllerHeader)) {
+            include ($controllerHeader);
+        } else {
+            include ($defaultHeader);
+        }
+
+        //判断视图文件是否存在
+        if (is_file($controllerLayout)) {
+            include ($controllerLayout);
+        } else {
+            echo &quot;&lt;h1&gt;无法找到视图文件&lt;/h1&gt;&quot;;
+        }
+        
+        // 页脚文件
+        if (is_file($controllerFooter)) {
+            include ($controllerFooter);
+        } else {
+            include ($defaultFooter);
+        }
+    }
+}</pre>
+
+<p>这样，核心的PHP MVC框架核心就完成了。</p>
+
+<p>下面我们编写应用来测试框架功能。</p>
+
+<h2 style="font-style:normal">5 应用</h2>
+
+<h3 style="color:#428bd1; font-style:normal">5.1 数据库部署</h3>
+
+<p>在 SQL 中新建一个 <strong>project&nbsp;</strong>数据库，增加一个<code>item</code>&nbsp;表、并插入两条记录，命令如下：</p>
+
+<pre>
+CREATE DATABASE `project` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `project`;
+
+CREATE TABLE `item` (
+    `id` int(11) NOT NULL auto_increment,
+    `item_name` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+ 
+INSERT INTO `item` VALUES(1, &#39;Hello World.&#39;);
+INSERT INTO `item` VALUES(2, &#39;Lets go!&#39;);</pre>
+
+<h3 style="color:#428bd1; font-style:normal">5.2 部署模型</h3>
+
+<p>然后，我们还需要在<code>app/models/</code>目录中创建一个 <strong>ItemModel.php</strong> 模型，内容如下：</p>
+
+<pre>
+&lt;?php
+namespace appmodels;
+
+use fastphpaseModel;
+use fastphpdbDb;
+
+/**
+ * 用户Model
+ */
+class ItemModel extends Model
+{
+    /**
+     * 自定义当前模型操作的数据库表名称，
+     * 如果不指定，默认为类名称的小写字符串，
+     * 这里就是 item 表
+     * @var string
+     */
+    protected $table = &#39;item&#39;;
+
+    /**
+     * 搜索功能，因为Sql父类里面没有现成的like搜索，
+     * 所以需要自己写SQL语句，对数据库的操作应该都放
+     * 在Model里面，然后提供给Controller直接调用
+     * @param $title string 查询的关键词
+     * @return array 返回的数据
+     */
+    public function search($keyword)
+    {
+        $sql = &quot;select * from `$this-&gt;table` where `item_name` like :keyword&quot;;
+        $sth = Db::pdo()-&gt;prepare($sql);
+        $sth = $this-&gt;formatParam($sth, [&#39;:keyword&#39; =&gt; &quot;%$keyword%&quot;]);
+        $sth-&gt;execute();
+
+        return $sth-&gt;fetchAll();
+    }
+}</pre>
+
+<p>因为 <code>Item</code> 模型继承了 <code>Model</code>基类，所以它拥有 <code>Model</code>&nbsp;类的所有功能。</p>
+
+<h3 style="color:#428bd1; font-style:normal">5.3 部署控制器</h3>
+
+<p>在 <code>app/controllers/</code> 目录下创建一个 <strong>ItemController.php</strong> 控制器，内容如下：</p>
+
+<pre>
+&lt;?php
+namespace appcontrollers;
+
+use fastphpaseController;
+use appmodelsItemModel;
+ 
+class ItemController extends Controller
+{
+    // 首页方法，测试框架自定义DB查询
+    public function index()
+    {
+        $keyword = isset($_GET[&#39;keyword&#39;]) ? $_GET[&#39;keyword&#39;] : &#39;&#39;;
+
+        if ($keyword) {
+            $items = (new ItemModel())-&gt;search($keyword);
+        } else {
+            // 查询所有内容，并按倒序排列输出
+            // where()方法可不传入参数，或者省略
+            $items = (new ItemModel)-&gt;where()-&gt;order([&#39;id DESC&#39;])-&gt;fetchAll();
+        }
+
+        $this-&gt;assign(&#39;title&#39;, &#39;全部条目&#39;);
+        $this-&gt;assign(&#39;keyword&#39;, $keyword);
+        $this-&gt;assign(&#39;items&#39;, $items);
+        $this-&gt;render();
+    }
+
+    // 查看单条记录详情
+    public function detail($id)
+    {
+        // 通过?占位符传入$id参数
+        $item = (new ItemModel())-&gt;where([&quot;id = ?&quot;], [$id])-&gt;fetch();
+
+        $this-&gt;assign(&#39;title&#39;, &#39;条目详情&#39;);
+        $this-&gt;assign(&#39;item&#39;, $item);
+        $this-&gt;render();
+    }
+    
+    // 添加记录，测试框架DB记录创建（Create）
+    public function add()
+    {
+        $data[&#39;item_name&#39;] = $_POST[&#39;value&#39;];
+        $count = (new ItemModel)-&gt;add($data);
+
+        $this-&gt;assign(&#39;title&#39;, &#39;添加成功&#39;);
+        $this-&gt;assign(&#39;count&#39;, $count);
+        $this-&gt;render();
+    }
+    
+    // 操作管理
+    public function manage($id = 0)
+    {
+        $item = array();
+        if ($id) {
+            // 通过名称占位符传入参数
+            $item = (new ItemModel())-&gt;where([&quot;id = :id&quot;], [&#39;:id&#39; =&gt; $id])-&gt;fetch();
+        }
+
+        $this-&gt;assign(&#39;title&#39;, &#39;管理条目&#39;);
+        $this-&gt;assign(&#39;item&#39;, $item);
+        $this-&gt;render();
+    }
+    
+    // 更新记录，测试框架DB记录更新（Update）
+    public function update()
+    {
+        $data = array(&#39;id&#39; =&gt; $_POST[&#39;id&#39;], &#39;item_name&#39; =&gt; $_POST[&#39;value&#39;]);
+        $count = (new ItemModel)-&gt;where([&#39;id = :id&#39;], [&#39;:id&#39; =&gt; $data[&#39;id&#39;]])-&gt;update($data);
+
+        $this-&gt;assign(&#39;title&#39;, &#39;修改成功&#39;);
+        $this-&gt;assign(&#39;count&#39;, $count);
+        $this-&gt;render();
+    }
+    
+    // 删除记录，测试框架DB记录删除（Delete）
+    public function delete($id = null)
+    {
+        $count = (new ItemModel)-&gt;delete($id);
+
+        $this-&gt;assign(&#39;title&#39;, &#39;删除成功&#39;);
+        $this-&gt;assign(&#39;count&#39;, $count);
+        $this-&gt;render();
+    }
+}</pre>
+
+<h3 style="color:#428bd1; font-style:normal">5.4 部署视图</h3>
+
+<p>在 <code>app/views/</code>目录下新建 header.php 和 footer.php 两个页头页脚模板，如下。</p>
+
+<p><strong>header.php&nbsp;</strong>内容：</p>
+
+<pre>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;?php echo $title ?&gt;&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/static/css/main.css&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;&lt;?php echo $title ?&gt;&lt;/h1&gt;</pre>
+
+<p><strong>footer.php </strong>内容：</p>
+
+<pre>
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>页头文件用到了<strong>main.css</strong>样式文件，内容：</p>
+
+<pre>
+html, body {
+    margin: 0;
+    padding: 10px;
+    font-size: 20px;
+}
+
+input {
+    font-family:georgia,times;
+    font-size:24px;
+    line-height:1.2em;
+}
+
+a {
+    color:blue;
+    font-family:georgia,times;
+    line-height:1.2em;
+    text-decoration:none;
+}
+
+a:hover {
+    text-decoration:underline;
+}
+
+h1 {
+    color:#000000;
+    font-size:41px;
+    border-bottom:1px dotted #cccccc;
+}
+
+td {padding: 1px 30px 1px 0;}</pre>
+
+<p>然后，在 <code>app/views/item</code> 目录下创建以下几个视图文件。</p>
+
+<p><strong>index.php</strong>，浏览数据库内 <code>item</code> 表的所有记录，内容：</p>
+
+<pre>
+&lt;form action=&quot;&quot; method=&quot;get&quot;&gt;
+    &lt;input type=&quot;text&quot; value=&quot;&lt;?php echo $keyword ?&gt;&quot; name=&quot;keyword&quot;&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;搜索&quot;&gt;
+&lt;/form&gt;
+
+&lt;p&gt;&lt;a href=&quot;/item/manage&quot;&gt;新建&lt;/a&gt;&lt;/p&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;ID&lt;/th&gt;
+        &lt;th&gt;内容&lt;/th&gt;
+        &lt;th&gt;操作&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;?php foreach ($items as $item): ?&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;?php echo $item[&#39;id&#39;] ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?php echo $item[&#39;item_name&#39;] ?&gt;&lt;/td&gt;
+            &lt;td&gt;
+                &lt;a href=&quot;/item/manage/&lt;?php echo $item[&#39;id&#39;] ?&gt;&quot;&gt;编辑&lt;/a&gt;
+                &lt;a href=&quot;/item/delete/&lt;?php echo $item[&#39;id&#39;] ?&gt;&quot;&gt;删除&lt;/a&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;?php endforeach ?&gt;
+&lt;/table&gt;</pre>
+
+<p><strong>add.php</strong>，添加记录后的提示，内容：</p>
+
+<pre>
+&lt;a class=&quot;big&quot; href=&quot;/item/index&quot;&gt;成功添加&lt;?php echo $count ?&gt;条记录，点击返回&lt;/a&gt;</pre>
+
+<p><strong>manage.php</strong>，管理记录，内容：</p>
+
+<pre>
+&lt;form action=&quot;&lt;?php echo $postUrl; ?&gt;&quot; method=&quot;post&quot;&gt;
+    &lt;?php if (isset($item[&#39;id&#39;])): ?&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;&lt;?php echo $item[&#39;id&#39;] ?&gt;&quot;&gt;
+    &lt;?php endif; ?&gt;
+    &lt;input type=&quot;text&quot; name=&quot;value&quot; value=&quot;&lt;?php echo isset($item[&#39;item_name&#39;]) ? $item[&#39;item_name&#39;] : &#39;&#39; ?&gt;&quot;&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
+&lt;/form&gt;
+
+&lt;a class=&quot;big&quot; href=&quot;/item/index&quot;&gt;返回&lt;/a&gt;</pre>
+
+<p><strong>update.php</strong>，更改记录后的提示，内容：</p>
+
+<pre>
+&lt;a class=&quot;big&quot; href=&quot;/item/index&quot;&gt;成功修改&lt;?php echo $count ?&gt;项，点击返回&lt;/a&gt;</pre>
+
+<p><strong>delete.php</strong>，删除记录后的提示，内容：</p>
+
+<pre>
+&lt;a href=&quot;/item/index&quot;&gt;成功删除&lt;?php echo $count ?&gt;项，点击返回&lt;/a&gt;</pre>
+
+<h2 style="font-style:normal">6&nbsp;应用测试</h2>
+
+<p>这样，在浏览器中访问 project程序：http://localhost/item/index/，就可以看到效果了。</p>
+
+<p><a href="https://www.awaimai.com/wp-content/uploads/2015/09/result.jpg"><img alt="result" src="https://www.awaimai.com/wp-content/uploads/2017/10/result-300x205.jpg" style="border-style:none; height:auto; width:300px" /></a></p>
+
+<p>&nbsp;</p>
+</p>
+        </div>
+        <div class="art_tag">
+            <p>标签1，标签2</p>
+        </div>
+        <div class="prev_next">
+            <div class="prev"> 上一篇： <a href="../article/95.html">PHP获取路径和目录的方法总结</a></div>
+            <div class="next"> 下一篇： <a href="../article/97.html">一波程序员表情包</a></div>
+        </div>
+    </div>
+
+    <div class="comment">
+        <div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+        <div id="SOHUCS" sid="96"></div>
+    </div>
+
+
+  </div>
+  <div class="main-right">
+      <div class="about">
+        <h3>博客信息</h3>
+        <p>主页</p>
+        <a href="http://www.jwhuang.site">www.jwhuang.site</a>
+        <p>源码地址</p>
+        <b>Github<a href="https://github.com/jwhuang59/XZ_Blog" target="_black">点我打开</a></b>
+        <span><strong>简介：</strong>一款简单的基于ajax+php+mysql的Blog网站，用于记录自己所学的知识，支持QQ、微博账号第三方登陆，欢迎来留言、评论。</span>
+        <span><strong>座右铭：</strong>路漫漫其修远兮，吾将上下而求索</span>
+      </div>
+      <div class="hot_list">
+        <h3>热门文章</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="wx">
+        <h3>小程序</h3>
+        <div class="wx_img">
+          <img src="../static/images/wx_img.jpg">
+        </div>
+      </div>
+      <div class="tag_cloud">
+        <h3>Tags</h3>
+        <div id="tags">
+         
+        </div>
+      </div>
+      <div class="fl_list">
+        <h3>分类</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="link">
+        <h3>友情链接</h3>
+        <ul class="href">
+            
+        </ul>
+      </div>
+
+  </div>
+  <div class="clear"></div>
+</div>
+
+<ul class="layui-fixbar">
+  
+    <li class="layui-icon top">&#xe604;</li>
+</ul>
+<div class="footer">
+    <p><i class="layui-icon">&#xe68e;</i> 博客空间 <a href="http://jwhuang.site">jwhuang.site</a></p>
+    <p>Copyright © 2018 <a href="http://jwhuang.site">jwhuang</a> &  版权所有  | <a href="https://github.com/jwhuang59/XZ_Blog" target="_black">网站源码Github</a></p>
+    <p>鄂ICP备16024346号</p>
+</div>
+
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cytrygClo"></script>
+<script id="cy_cmt_num" src="http://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytrygClo"></script>
+<script type="text/javascript" src='../static/js/jquery.js'></script>
+<script type="text/javascript" src="../admin/layui/layui.js"></script>
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/public.js"></script>
+<!-- 畅言js -->
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cytrygClo',
+conf: 'prod_3a6cc613160ae35fc755d1dab12d50f9'
+});
+$.get("../model/count.php",{id:"96"},function(data){
+  
+  $(".main .main-left .article .browse").html(data+"℃")
+});
+</script>
+</body>
+</html>

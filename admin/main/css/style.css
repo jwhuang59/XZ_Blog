@@ -1,0 +1,17 @@
+@charset "utf-8;"
+
+*{margin:0;padding:0;}
+.layui-logo p{font-size:24px;font-weight:bold;cursor:pointer;text-align:right;color:white;}
+.layui-nav-item i{margin:0 10px 0;}
+.layui-nav-child a{font-size:12px;}
+.layui-side .layui-nav-child a{margin-left:30px;}
+.layui-header .admin a{padding:0 20px 0 10px;}
+.layui-header .admin a img{margin-right:0;}
+.layui-header .layui-nav-child a{text-align:center;}
+.layui-header .msg{margin-right:10px;}
+.layui-header .msg a{padding:0 30px 0 10px;}
+.layui-body .main{width:100%;height:100%;}
+.main iframe{display:none;}
+.main .active{display:block;}
+.layui-layout-admin .layui-body{bottom:0px;}
+

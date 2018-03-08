@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>首页面板</title>
+<link rel="shortcut icon" href="../logo.ico"></link>
+<link rel="stylesheet" href="../layui/css/layui.css">
+<link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+
+<h3>首页面板</h3>
+<hr class="layui-bg-green">
+
+<div class="home">
+  <div class="left">
+      <blockquote class="layui-elem-quote">
+          <p>运行PHP版本：PHP5.5.34</p><hr>
+          <p>服务器系统：Linux</p><hr>
+          <p>WEB运行环境：Apache</p><hr>
+          <p>数据库信息：MySQL&nbsp;</p><hr>
+          <p>上传大小限制：2M</p>
+      </blockquote>     
+  </div>
+  <div class="right">
+    <blockquote class="layui-elem-quote">
+      <p>系统名称：XzCMS-博客版</p><hr>
+      <p>开发作者：jwhuang</p><hr>
+      <p>官网地址： <a target="_blank" href="http://www.jwhuang.site">http://www.jwhuang.site</a></p><hr>
+      <p>项目地址： <a target="_blank" href="https://github.com/jwhuang59">https://github.com/jwhuang59</a></p><hr>
+      <p>BUG反馈： <a target="_blank" href="http://www.jwhuang.site/view/message.html">http://www.jwhuang.site/view/message.html</a></p>
+    </blockquote>
+  </div>
+  <div class="clear"></div>
+</div>
+
+
+<div class="chart">
+    <div class="left">
+        <div id="chart1"></div>
+    </div>
+    <div class="right">
+        <div id="chart2"></div>
+    </div>
+</div>
+<script type="text/javascript" src='js/jquery.js'></script>
+<script src="js/echarts.js"></script>
+<script src="../layui/layui.js"></script>
+<script>
+var myChart1 = echarts.init(document.getElementById('chart1'));
+var myChart2 = echarts.init(document.getElementById('chart2'));
+// 显示标题，图例和空的坐标轴
+myChart1.setOption({
+    title: {
+        text: 'Blog文章'
+    },
+    tooltip: {},
+    legend: {
+        data:['数量']
+    },
+    xAxis: {
+        data: []
+    },
+    yAxis: {},
+    series: [{
+        name: '数量',
+        type: 'bar',
+        data: []
+    }]
+});
+
+//异步加载数据
+$.get('../../model/fl_list.php').done(function (list) {
+    // 填入数据
+    var arr1=[];
+    var arr2=[];
+    for(var i=0;i<list.length;i++){
+      arr1[i]=list[i].type
+      arr2[i]=list[i].count
+     }
+
+    myChart1.setOption({
+        xAxis: {
+            data: arr1
+        },
+        series: [{
+            // 根据名字对应到相应的系列
+            name: '数量',
+            data: arr2
+        }]
+    });
+
+    
+    
+});
+
+myChart2.setOption({
+    title: {
+        text: '关键字搜索'
+    },
+    tooltip: {},
+    series : [
+        {
+            name: '关键字',
+            type: 'pie',
+            radius: '55%',
+            roseType: 'angle',
+            data:[
+                {value:235, name:'戏子博客'},
+                {value:274, name:'博客系统'},
+                {value:310, name:'PHP技术'},
+                {value:335, name:'PHP源码'},
+                {value:400, name:'个人博客'}
+            ]
+        }
+    ]
+})
+
+
+
+
+</script>
+</body>
+</html>

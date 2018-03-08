@@ -1,0 +1,24 @@
+﻿@charset "utf-8;"
+body,ul,li,a,p,span{font-family:"微软雅黑"}
+a{text-decoration:none;}
+
+.bg{position:relative;}
+.bg .Forms{width:400px;height:300px;position:absolute;top:50%;left:50%;margin-left:-200px;margin-top:-150px;box-shadow:1px 1px 50px #999;border-radius:10px;background:#fff;}
+.bg .Forms .Forms_box{width:400px;height:300px;position:relative;}
+.bg .Forms .Forms_box .Forms_head{width:400px;height:50px;line-height:50px;border-bottom:2px solid #ccc;}
+.bg .Forms .Forms_box .Forms_head .a1{width:80px;height:40px;line-height:40px;text-align:center;color:#333;font-size:18px;position:absolute;top:10px;left:70px;cursor:pointer;}
+.bg .Forms .Forms_box .Forms_head .active{border-bottom:2px solid #19bfe8;}
+.bg .Forms .Forms_box .Forms_head .a2{width:80px;height:40px;line-height:40px;text-align:center;color:#333;font-size:18px;position:absolute;top:10px;right:70px;cursor:pointer;}
+.bg .Forms .Forms_box .submit{width:260px;height:150px;margin:30px 70px;position:absolute;display:none;top:50px;}
+.bg .Forms .Forms_box .submit form input{width:200px;height:30px;line-height:30px;padding-left:3px;font-size:12px;color:#000;outline:none;}
+.bg .Forms .Forms_box .submit form .input4{margin-top:25px;}
+.bg .Forms .Forms_box .submit form span{font-size:16px;margin-right:10px;}
+.bg .Forms .Forms_box .submit form .text1{height:15px;text-align:left;font-size:12px;color:red;margin:5px 0 5px 0;padding-left:55px;opacity: 0}
+.bg .Forms .Forms_box .submit form .text2{width:260px;height:15px;text-align:left;font-size:12px;color:red;margin:5px 0 5px 0;padding-left:55px;position:absolute;top:30px;}
+.bg .Forms .Forms_box .submit form .text{height:15px;height:15px;text-align:left;font-size:12px;color:#fff;margin-top:5px;padding-left:55px;}
+.bg .Forms .Forms_box .submit form .yz{width:260px;height:30px;margin:5px 0 0 -16px;}
+.bg .Forms .Forms_box .submit form .yz_text{width:100px;height:30px;line-height:30px;display:inline-block;outline:none;}
+.bg .Forms .Forms_box .submit form #code{width:70px;height:30px;line-height:30px;color:green;border:0;font-size:18px;letter-spacing:3px;font-weight:bolder;margin-left:10px;outline:none;} 
+.bg .Forms .Forms_box .submit .sub1{width:100px;height:30px;margin:20px 0 0 55px;display:block;cursor:pointer;background:#19bfe8;color:#fff;border-radius:5px;border:0px;font-size:14px;}
+.bg .Forms .Forms_box .submit .sub2{width:100px;height:30px;margin:20px 0 0 50px;display:block;cursor:pointer;background:#19bfe8;color:#fff;border-radius:5px;border:0px;font-size:14px;}
+.bg .Forms .Forms_box  .action{display:block;}

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- SEO关键字搜索 -->
+<meta name="keywords" content="jwhuang,戏子,戏子博客,jwhuang博客,个人博客,个人网站,个人主页,个人博客php源代码,基于php个人博客,戏子博客系统">
+<meta name="description" content="戏子博客,用jq+ajax+php+layui做的,简单方便,没有复杂的功能,就是一个简单个人展示博客">
+<meta name="author" content="jwhuang">
+<meta eta property="og:type" content="webpage" />
+<meta property="og:url" content="http://www.jwhuang.site" />
+<meta property="og:title" content="戏子的个人博客" />
+<meta property="og:description" content="一款简单的基于ajax+php+mysql的Blog网站" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>JS获取浏览器高度和宽度值（总结）</title>
+<link rel="shortcut icon" href="../logo.ico"></link>
+<link rel="stylesheet" href="../admin/layui/css/layui.css" >
+<link rel="stylesheet" href="../static/css/public.css">
+<link rel="stylesheet" href="../static/css/main.css">
+<link rel="stylesheet" href="../static/css/article.css"> 
+</head>
+<body>
+<div class="wrapper">
+    <canvas id="canvas" height="120px"></canvas>
+    <canvas id="canvasbg" height="120px"></canvas>
+</div>
+<div class="nav">
+  <div class="nav-menu">
+  <div class="logo"><img src="../static/images/logo.png"></div>
+    <ul class="nav-left">
+      <li><a href="http://jwhuang.site" class="menu-warper"><span class="menu-warper-box"><span class="front">首页</span><span class="back">首页</span></span> </a></li>
+      <li><a href="../view/article.html" class="menu-warper"><span class="menu-warper-box active"><span class="front">Blog文章</span><span class="back">Blog文章</span></span></a>
+        <ul>
+          <li><a href="../articlelist/talk.html" class="menu-warper"><span class="menu-warper-box"><span class="front">浅谈</span><span class="back">浅谈</span></span> </a></li>
+          <li><a href="../articlelist/js.html" class="menu-warper"><span class="menu-warper-box"><span class="front">JavaScript</span><span class="back">JavaScript</span></span> </a></li>
+          <li><a href="../articlelist/php.html" class="menu-warper"><span class="menu-warper-box"><span class="front">PHP</span><span class="back">php</span></span> </a></li>
+          <li><a href="../articlelist/front.html" class="menu-warper"><span class="menu-warper-box"><span class="front">前端文档</span><span class="back">前端文档</span></span> </a></li>
+          <li><a href="../articlelist/after.html" class="menu-warper"><span class="menu-warper-box"><span class="front">后端文档</span><span class="back">后端文档</span></span> </a></li>
+        </ul>
+      </li>
+      <li><a href="../view/share.html" class="menu-warper"><span class="menu-warper-box"><span class="front">分享</span><span class="back">分享</span></span> </a></li>
+      <li><a href="../view/about.html" class="menu-warper"><span class="menu-warper-box"><span class="front">关于我</span><span class="back">关于我</span></span></a>
+        <ul>
+          <li><a href="../view/resume/index.html" class="menu-warper"><span class="menu-warper-box"><span class="front">个人简历</span><span class="back">个人简历</span></span> </a></li>
+          
+        </ul>
+      </li>
+      <li><a href="../view/message.html" class="menu-warper"><span class="menu-warper-box"><span class="front">留言</span><span class="back">留言</span></span> </a></li>
+    </ul>
+    <div class="nav-right">
+      <a>搜索</a>
+      <div class="search">
+        <span>×</span>
+        <form action="../view/search.html" mothod="get">
+          <input type="text" class="text" name="keyword" placeholder="输入关键词搜索" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="main-left">
+    <div class="breadcrumb_nav">
+        <span class="breadcrumb">
+          <a href="http://jwhuang.site">首页</a> —
+          <a href="../view/article.html">Blog文章</a> —
+          <a href="../articlelist/js.html">JavaScript</a> —
+          <label>JS获取浏览器高度和宽度值（总结）</label>
+        </span>
+    </div>
+    <div class="article">
+        <h2 class="h2">JS获取浏览器高度和宽度值（总结）</h2>
+        <div class="art_msg">
+            <span>发布时间：<label class="msg_date">2018-02-28 17:30:11</label></span>
+            <span>浏览量：<label class="msg_browse browse"></label></span>
+            <span>评论数：<label class="msg_browse"><span id = "sourceId::102" class = "cy_cmt_count" style="display:inline"></span></label></span>
+        </div>
+        <div class="art_text">
+            <p><h3>clientHeight,offsetHeight,scrollHeight,scrollTop,offsetParent,offsetY,innerHeight</h3>
+
+<p>&nbsp;</p>
+
+<p>IE中：</p>
+
+<p>document.body.clientWidth&nbsp;==&gt;&nbsp;BODY对象宽度</p>
+
+<p>document.body.clientHeight&nbsp;==&gt;&nbsp;BODY对象高度</p>
+
+<p>document.documentElement.clientWidth&nbsp;==&gt;&nbsp;可见区域宽度</p>
+
+<p>document.documentElement.clientHeight&nbsp;==&gt;&nbsp;可见区域高度</p>
+
+<p>FireFox中：&nbsp;</p>
+
+<p>document.body.clientWidth&nbsp;==&gt;&nbsp;BODY对象宽度</p>
+
+<p>document.body.clientHeight&nbsp;==&gt;&nbsp;BODY对象高度</p>
+
+<p>document.documentElement.clientWidth&nbsp;==&gt;&nbsp;可见区域宽度</p>
+
+<p>document.documentElement.clientHeight&nbsp;==&gt;&nbsp;可见区域高度</p>
+
+<p>Opera中：&nbsp;</p>
+
+<p>document.body.clientWidth ==&gt; 可见区域宽度</p>
+
+<p>document.body.clientHeight ==&gt; 可见区域高度</p>
+
+<p>document.documentElement.clientWidth ==&gt; 页面对象宽度（即BODY对象宽度加上Margin宽）</p>
+
+<p>document.documentElement.clientHeight ==&gt; 页面对象高度（即BODY对象高度加上Margin高）</p>
+
+<h3><a name="t1"></a> 没有定义W3C的标准，则</h3>
+
+<p>IE为：&nbsp;</p>
+
+<p>document.documentElement.clientWidth&nbsp;==&gt;&nbsp;0</p>
+
+<p><br />
+document.documentElement.clientHeight&nbsp;==&gt;&nbsp;0</p>
+
+<p>FireFox为：</p>
+
+<p>document.documentElement.clientWidth&nbsp;==&gt;&nbsp;页面对象宽度（即BODY对象宽度加上Margin宽)</p>
+
+<p>document.documentElement.clientHeight&nbsp;==&gt;&nbsp;页面对象高度（即BODY对象高度加上Margin高）</p>
+
+<p>Opera为：&nbsp;</p>
+
+<p>document.documentElement.clientWidth ==&gt; 页面对象宽度（即BODY对象宽度加上Margin宽）</p>
+
+<p>document.documentElement.clientHeight ==&gt; 页面对象高度（即BODY对象高度加上Margin高）</p>
+
+<blockquote>网页可见区域宽： document.body.clientWidth<br />
+网页可见区域高： document.body.clientHeight<br />
+网页可见区域宽： document.body.offsetWidth (包括边线的宽)<br />
+网页可见区域高： document.body.offsetHeight (包括边线的高)<br />
+网页正文全文宽： document.body.scrollWidth<br />
+网页正文全文高： document.body.scrollHeight<br />
+网页被卷去的高： document.body.scrollTop<br />
+网页被卷去的左： document.body.scrollLeft<br />
+网页正文部分上： window.screenTop<br />
+网页正文部分左： window.screenLeft<br />
+屏幕分辨率的高： window.screen.height<br />
+屏幕分辨率的宽： window.screen.width<br />
+屏幕可用工作区高度： window.screen.availHeight<br />
+屏幕可用工作区宽度： window.screen.availWidth</blockquote>
+
+<p>(注意：CSS中的margin属性，与clientWidth、offsetWidth、clientHeight、offsetHeight均无关)</p>
+
+<p>HTML精确定位：scrollLeft、scrollWidth、clientWidth、offsetWidth</p>
+
+<blockquote>scrollWidth&nbsp;==&gt;&nbsp;获取对象的滚动宽度<br />
+scrollHeight&nbsp;==&gt;&nbsp; 获取对象的滚动高度<br />
+scrollLeft&nbsp;==&gt;&nbsp;设置或获取位于对象左边界和窗口中目前可见内容的最左端之间的距离（被卷去的左）<br />
+scrollTop&nbsp;==&gt;&nbsp;设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离（被卷去的高）<br />
+offsetLeft&nbsp;==&gt;&nbsp;获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置<br />
+offsetTop&nbsp;==&gt;&nbsp;获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置<br />
+offsetHeight&nbsp;==&gt;&nbsp;获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度</blockquote>
+
+<p>event.clientX&nbsp;==&gt;&nbsp;相对文档的水平座标</p>
+
+<p>event.clientY&nbsp;==&gt;&nbsp;相对文档的垂直座标</p>
+
+<p>event.offsetX&nbsp;==&gt;&nbsp;相对容器的水平坐标</p>
+
+<p>event.offsetY&nbsp;==&gt;&nbsp;相对容器的垂直坐标</p>
+
+<p>document.documentElement.scrollTop&nbsp;==&gt;&nbsp;垂直方向滚动的值</p>
+
+<p>event.clientX+document.documentElement.scrollTop&nbsp;==&gt;&nbsp;相对文档的水平座标+垂直方向滚动的量</p>
+
+<h1><strong>附录1：</strong></h1>
+
+<h1><a name="t2"></a> <small>js 判断滚动条是否到达底部</small></h1>
+
+<p>scrollTop : 滚动条在Y轴上的滚动距离。&nbsp;<br />
+clientHeight : 内容可视区域的高度。&nbsp;<br />
+scrollHeight : 内容可视区域的高度加上溢出（滚动）的距离。</p>
+
+<p>&nbsp;</p>
+
+<p><big><strong>原生js实现 </strong></big></p>
+
+<hr />
+<ol>
+	<li>window.onscroll=function(){&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;if(check()){&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(&quot;到底了&quot;)&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+	<li>}&nbsp;&nbsp;</li>
+	<li>function&nbsp;check(){&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;scrollHeight&nbsp;=&nbsp;document.documentElement.scrollHeight;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;clientHeight&nbsp;=&nbsp;document.documentElement.clientHeight;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;scrollTop&nbsp;=&nbsp;document.documentElement.scrollTop&nbsp;||&nbsp;document.body.scrollTop;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;scrollHeight&nbsp;==&nbsp;clientHeight&nbsp;+&nbsp;scrollTop&nbsp;?&nbsp;true:false;&nbsp;&nbsp;</li>
+	<li>}&nbsp;&nbsp;</li>
+</ol>
+
+<hr />
+<p><big><strong>jquery实现 </strong></big></p>
+
+<hr />
+<ol>
+	<li>$(window).scroll(function(){&nbsp;&nbsp;</li>
+	<li>　　var&nbsp;scrollTop&nbsp;=&nbsp;$(this).scrollTop();&nbsp;&nbsp;</li>
+	<li>　　var&nbsp;scrollHeight&nbsp;=&nbsp;$(document).height();&nbsp;&nbsp;</li>
+	<li>　　var&nbsp;windowHeight&nbsp;=&nbsp;$(this).height();&nbsp;&nbsp;</li>
+	<li>　　if(scrollTop&nbsp;+&nbsp;windowHeight&nbsp;==&nbsp;scrollHeight){&nbsp;&nbsp;</li>
+	<li>　　　　alert(&quot;到底了&quot;);&nbsp;&nbsp;</li>
+	<li>　　}&nbsp;&nbsp;</li>
+	<li>});&nbsp;&nbsp;</li>
+</ol>
+
+<hr />
+<h1><strong>附录2：</strong></h1>
+
+<h1><a name="t3"></a> <small>js 判断鼠标滚轮向上向下滚动</small></h1>
+
+<hr />
+<p>var scrollFunc = function (e) { &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e = e || window.event; &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (e.wheelDelta) {&nbsp; //判断浏览器IE，谷歌滑轮事件&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (e.wheelDelta &gt; 0) { //当滑轮向上滚动时 &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert(&quot;滑轮向上滚动&quot;); &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (e.wheelDelta &lt; 0) { //当滑轮向下滚动时 &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert(&quot;滑轮向下滚动&quot;); &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (e.detail) {&nbsp; //Firefox滑轮事件 与IE,谷歌方向相反<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (e.detail &lt; 0) { //当滑轮向上滚动时 &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert(&quot;滑轮向上滚动&quot;); &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (e.detail &gt; 0) { //当滑轮向下滚动时 &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert(&quot;滑轮向下滚动&quot;); &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;<br />
+&nbsp;&nbsp;&nbsp; } &nbsp;<br />
+&nbsp;&nbsp;&nbsp; //给页面绑定滑轮滚动事件 &nbsp;<br />
+&nbsp;&nbsp;&nbsp; if (document.addEventListener) {//firefox &nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.addEventListener(&#39;DOMMouseScroll&#39;, scrollFunc, false); &nbsp;<br />
+&nbsp;&nbsp;&nbsp; } &nbsp;<br />
+&nbsp;&nbsp;&nbsp; //滚动滑轮触发scrollFunc方法&nbsp; &nbsp;<br />
+&nbsp;&nbsp;&nbsp; window.onmousewheel = scrollFunc;</p>
+
+<hr />
+<p>&nbsp;</p>
+</p>
+        </div>
+        <div class="art_tag">
+            <p>标签1，标签2</p>
+        </div>
+        <div class="prev_next">
+            <div class="prev"> 上一篇： <a href="../article/97.html">一波程序员表情包</a></div>
+            <div class="next"> 下一篇： <a href="../article/105.html">手机访问PC网站自动跳转到手机</a></div>
+        </div>
+    </div>
+
+    <div class="comment">
+        <div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+        <div id="SOHUCS" sid="102"></div>
+    </div>
+
+
+  </div>
+  <div class="main-right">
+      <div class="about">
+        <h3>博客信息</h3>
+        <p>主页</p>
+        <a href="http://www.jwhuang.site">www.jwhuang.site</a>
+        <p>源码地址</p>
+        <b>Github<a href="https://github.com/jwhuang59/XZ_Blog" target="_black">点我打开</a></b>
+        <span><strong>简介：</strong>一款简单的基于ajax+php+mysql的Blog网站，用于记录自己所学的知识，支持QQ、微博账号第三方登陆，欢迎来留言、评论。</span>
+        <span><strong>座右铭：</strong>路漫漫其修远兮，吾将上下而求索</span>
+      </div>
+      <div class="hot_list">
+        <h3>热门文章</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="wx">
+        <h3>小程序</h3>
+        <div class="wx_img">
+          <img src="../static/images/wx_img.jpg">
+        </div>
+      </div>
+      <div class="tag_cloud">
+        <h3>Tags</h3>
+        <div id="tags">
+         
+        </div>
+      </div>
+      <div class="fl_list">
+        <h3>分类</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="link">
+        <h3>友情链接</h3>
+        <ul class="href">
+            
+        </ul>
+      </div>
+
+  </div>
+  <div class="clear"></div>
+</div>
+
+<ul class="layui-fixbar">
+  
+    <li class="layui-icon top">&#xe604;</li>
+</ul>
+<div class="footer">
+    <p><i class="layui-icon">&#xe68e;</i> 博客空间 <a href="http://jwhuang.site">jwhuang.site</a></p>
+    <p>Copyright © 2018 <a href="http://jwhuang.site">jwhuang</a> &  版权所有  | <a href="https://github.com/jwhuang59/XZ_Blog" target="_black">网站源码Github</a></p>
+    <p>鄂ICP备16024346号</p>
+</div>
+
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cytrygClo"></script>
+<script id="cy_cmt_num" src="http://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytrygClo"></script>
+<script type="text/javascript" src='../static/js/jquery.js'></script>
+<script type="text/javascript" src="../admin/layui/layui.js"></script>
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/public.js"></script>
+<!-- 畅言js -->
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cytrygClo',
+conf: 'prod_3a6cc613160ae35fc755d1dab12d50f9'
+});
+$.get("../model/count.php",{id:"102"},function(data){
+  
+  $(".main .main-left .article .browse").html(data+"℃")
+});
+</script>
+</body>
+</html>

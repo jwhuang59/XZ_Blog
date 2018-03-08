@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- SEO关键字搜索 -->
+<meta name="keywords" content="jwhuang,戏子,戏子博客,jwhuang博客,个人博客,个人网站,个人主页,个人博客php源代码,基于php个人博客,戏子博客系统">
+<meta name="description" content="戏子博客,用jq+ajax+php+layui做的,简单方便,没有复杂的功能,就是一个简单个人展示博客">
+<meta name="author" content="jwhuang">
+<meta eta property="og:type" content="webpage" />
+<meta property="og:url" content="http://www.jwhuang.site" />
+<meta property="og:title" content="戏子的个人博客" />
+<meta property="og:description" content="一款简单的基于ajax+php+mysql的Blog网站" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>程序员到底会不会修电脑</title>
+<link rel="shortcut icon" href="../logo.ico"></link>
+<link rel="stylesheet" href="../admin/layui/css/layui.css" >
+<link rel="stylesheet" href="../static/css/public.css">
+<link rel="stylesheet" href="../static/css/main.css">
+<link rel="stylesheet" href="../static/css/article.css"> 
+</head>
+<body>
+<div class="wrapper">
+    <canvas id="canvas" height="120px"></canvas>
+    <canvas id="canvasbg" height="120px"></canvas>
+</div>
+<div class="nav">
+  <div class="nav-menu">
+  <div class="logo"><img src="../static/images/logo.png"></div>
+    <ul class="nav-left">
+      <li><a href="http://jwhuang.site" class="menu-warper"><span class="menu-warper-box"><span class="front">首页</span><span class="back">首页</span></span> </a></li>
+      <li><a href="../view/article.html" class="menu-warper"><span class="menu-warper-box active"><span class="front">Blog文章</span><span class="back">Blog文章</span></span></a>
+        <ul>
+          <li><a href="../articlelist/talk.html" class="menu-warper"><span class="menu-warper-box"><span class="front">浅谈</span><span class="back">浅谈</span></span> </a></li>
+          <li><a href="../articlelist/js.html" class="menu-warper"><span class="menu-warper-box"><span class="front">JavaScript</span><span class="back">JavaScript</span></span> </a></li>
+          <li><a href="../articlelist/php.html" class="menu-warper"><span class="menu-warper-box"><span class="front">PHP</span><span class="back">php</span></span> </a></li>
+          <li><a href="../articlelist/front.html" class="menu-warper"><span class="menu-warper-box"><span class="front">前端文档</span><span class="back">前端文档</span></span> </a></li>
+          <li><a href="../articlelist/after.html" class="menu-warper"><span class="menu-warper-box"><span class="front">后端文档</span><span class="back">后端文档</span></span> </a></li>
+        </ul>
+      </li>
+      <li><a href="../view/share.html" class="menu-warper"><span class="menu-warper-box"><span class="front">分享</span><span class="back">分享</span></span> </a></li>
+      <li><a href="../view/about.html" class="menu-warper"><span class="menu-warper-box"><span class="front">关于我</span><span class="back">关于我</span></span></a>
+        <ul>
+          <li><a href="../view/resume/index.html" class="menu-warper"><span class="menu-warper-box"><span class="front">个人简历</span><span class="back">个人简历</span></span> </a></li>
+          
+        </ul>
+      </li>
+      <li><a href="../view/message.html" class="menu-warper"><span class="menu-warper-box"><span class="front">留言</span><span class="back">留言</span></span> </a></li>
+    </ul>
+    <div class="nav-right">
+      <a>搜索</a>
+      <div class="search">
+        <span>×</span>
+        <form action="../view/search.html" mothod="get">
+          <input type="text" class="text" name="keyword" placeholder="输入关键词搜索" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="main-left">
+    <div class="breadcrumb_nav">
+        <span class="breadcrumb">
+          <a href="http://jwhuang.site">首页</a> —
+          <a href="../view/article.html">Blog文章</a> —
+          <a href="../articlelist/talk.html">浅谈</a> —
+          <label>程序员到底会不会修电脑</label>
+        </span>
+    </div>
+    <div class="article">
+        <h2 class="h2">程序员到底会不会修电脑</h2>
+        <div class="art_msg">
+            <span>发布时间：<label class="msg_date">2018-02-13 18:09:29</label></span>
+            <span>浏览量：<label class="msg_browse browse"></label></span>
+            <span>评论数：<label class="msg_browse"><span id = "sourceId::89" class = "cy_cmt_count" style="display:inline"></span></label></span>
+        </div>
+        <div class="art_text">
+            <p><p><strong>程序猿，有人喊你回家修电脑！</strong></p>
+
+
+<p>春节回家了，七大姑八大姨齐齐上门。你说你在金融公司工作，他们问你哪个股票会涨。你说你在医院工作，他们问你能不能看病不排队。你说你在火车站工作，他们问你能不能帮抢到春运火车票。你说你是程序员，嘿！哥们！能不能帮我修电脑！</p>
+
+<p><img alt="0.jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/bd852c3561fbdd7fbc1f8cbcb6b3cc57.jpg" /></p>
+
+<p>修电脑在大多数情况下，都是吃力不讨好的，按照以往的经验来说，接下来的情况无非是这样：</p>
+
+<p><img alt="0.png" src="http://www.phplaozhang.com/uploads/layedit/20171128/53d12f57a3f591f7a100820fdec8a78a.png" /></p>
+
+<p>因为他们的不了解，所以会觉得很多事情程序员都可以做，从盗QQ，Photoshop，硬盘文件恢复，到装系统，处理系统故障和软件问题，安装各种盗版软件，各种手机的越狱Root装盗版应用。并且，另外这些事情往往不涉及实物，给人的感觉是只是在键盘上打打字，又不需要买新硬件之类的，所以往往会被认为是举手之劳，理应帮忙。</p>
+
+<p><img alt="0 (1).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/383b59dcfc3bffcd3a514cd380ae609c.jpg" /></p>
+
+<p>有人说：&ldquo;程序员有什么可提供呢？对于一般人来说，除了修电脑和电子产品导购，可能没有什么其他的可提供的了。也即是说，帮助别人维修电脑或者给别人提供电子产品采购方面的信息很可能是唯一让人对程序员采取主动的理由，也是程序员的尊重需求得到满足的唯一途径&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>不约，叔叔阿姨我们不修电脑！</strong></p>
+
+<p>软件行业与大家息息相关，但又不为大家了解。在大众眼里的程序员，上天下地无所不能，可以用高超的技术手段，盗QQ、修图、装系统、恢复系统文件、处理系统故障、安装盗版软件、手机越狱等等。所以修电脑这样简单的问题，更不再话下吧？</p>
+
+<p><img alt="0 (2).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/a6102f7d1da057001b3a28bd38b803f6.jpg" /></p>
+
+<p>我是程序猿，我不会修电脑，我只会重启电脑！&nbsp;<br />
+我的世界只有0和1，我不是网管！&nbsp;<br />
+我会修复exception，但不一定会改正error，我不会修复404！</p>
+
+<p><img alt="0 (3).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/28a84350f7f7cfecd5fbc813e13ad2ed.jpg" /></p>
+
+<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></p>
+
+<p><strong>如何优雅地拒绝修电脑？</strong></p>
+
+<p>&nbsp;</p>
+
+<p><img alt="0 (4).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/ae20f2d4bd2f7f4a4a9caf09683cd804.jpg" /></p>
+
+<p>&ldquo;不如帮我修一下电脑吧？&rdquo; &ldquo;不好意思，我自己的也坏了。&rdquo; &ldquo;不好意思，我没用过WINDOWS。&rdquo;</p>
+
+<p><img alt="0 (5).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/64dc312300cac3e52294bf1216daadc7.jpg" /></p>
+
+<p>对待女性：So sorry，我只为我的女朋友修电脑。如果她还是叫你修，你可以优雅得请她吃饭了。</p>
+
+<p><img alt="0 (6).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/4b46925ce914de3b7afc4919e55f207e.jpg" /></p>
+
+<p>对待男性：</p>
+
+<p><img alt="0 (7).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/2da8f7d11e8c2d5036333cc8a1267d5d.jpg" /></p>
+
+<p>&nbsp;</p>
+
+<p><strong>其实吧，这事儿还是看脸</strong></p>
+
+<p>&nbsp;</p>
+
+<p>在有些特殊情况下，程序员是会修电脑的。</p>
+
+<p><img alt="0 (8).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/a6d0e2126a0f44a28e22411ce8237369.jpg" /></p>
+
+<p>修电脑不一定会给你带来妹子，但是不修电脑你一定不能得到妹子。只要妹子邀请你来修了，会不会没关系，千万不要说我不来。如果电脑一直修不好，可以继续共同探讨怎么修，千万别把电脑扛走修好再送来，不然下次有修的机会，也不会是你的了。</p>
+
+<p><img alt="0 (9).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/06c75e055bb8b6d653ef5cddf860ad43.jpg" /></p>
+
+<p>如何给妹子修电脑，如何给单身妹子修电脑，如何给漂亮的但是妹子修电脑，真的是一门技术活。</p>
+
+<p><img alt="0 (10).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/2743c76f2819e37a51447b32e16703d7.jpg" /></p>
+
+<p><strong>表演篇 &ndash; 不管问题 一律重装系统！&nbsp;</strong><br />
+不管什么问题只要妹子同意，统统重装系统！这是最简单的方法，但是如果要感动妹子，这也是最好的方法，因为妹子会在漫长的等待中觉得你真是很有耐心和爱心的好男人！</p>
+
+<p><img alt="0 (11).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/c10ced5c2dcd993537efc6c2d4ea3eba.jpg" /></p>
+
+<p><strong>技术篇 &ndash; 妹子电脑出的通常都是弱智问题&nbsp;</strong><br />
+不要用特别专业的眼光去分析，一般都是系统设置没设置好,显示屏黑屏这类问题。只需看看显示器开关有没有开，显示器有没有插上电源，显示器线有没有连到主机等等简单问题！</p>
+
+<p><img alt="0 (12).jpg" src="http://www.phplaozhang.com/uploads/layedit/20171128/dcd54e05178c70f7638442cce055b7c2.jpg" /></p>
+
+<p><strong>感情篇 &ndash; 妹子的电脑永远都是最好的&nbsp;</strong><br />
+妹子一般最要面子，但是找你修电脑总是电脑出了问题，所以你这个时候一定不能在伤口上散盐。对于妹子的电脑，如果牌子好，哪怕是集成主板，也要说这个牌子我最喜欢了。把电脑看成妹子的脸，你就知道该怎么做了！</p>
+
+<p>祝大家修电脑好运~</p>
+</p>
+        </div>
+        <div class="art_tag">
+            <p>标签1，标签2</p>
+        </div>
+        <div class="prev_next">
+            <div class="prev"> 上一篇： <a href="../article/88.html">Jwhuang博客上线了</a></div>
+            <div class="next"> 下一篇： <a href="../article/90.html">php模糊查询的实现方法</a></div>
+        </div>
+    </div>
+
+    <div class="comment">
+        <div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+        <div id="SOHUCS" sid="89"></div>
+    </div>
+
+
+  </div>
+  <div class="main-right">
+      <div class="about">
+        <h3>博客信息</h3>
+        <p>主页</p>
+        <a href="http://www.jwhuang.site">www.jwhuang.site</a>
+        <p>源码地址</p>
+        <b>Github<a href="https://github.com/jwhuang59/XZ_Blog" target="_black">点我打开</a></b>
+        <span><strong>简介：</strong>一款简单的基于ajax+php+mysql的Blog网站，用于记录自己所学的知识，支持QQ、微博账号第三方登陆，欢迎来留言、评论。</span>
+        <span><strong>座右铭：</strong>路漫漫其修远兮，吾将上下而求索</span>
+      </div>
+      <div class="hot_list">
+        <h3>热门文章</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="wx">
+        <h3>小程序</h3>
+        <div class="wx_img">
+          <img src="../static/images/wx_img.jpg">
+        </div>
+      </div>
+      <div class="tag_cloud">
+        <h3>Tags</h3>
+        <div id="tags">
+         
+        </div>
+      </div>
+      <div class="fl_list">
+        <h3>分类</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="link">
+        <h3>友情链接</h3>
+        <ul class="href">
+            
+        </ul>
+      </div>
+
+  </div>
+  <div class="clear"></div>
+</div>
+
+<ul class="layui-fixbar">
+  
+    <li class="layui-icon top">&#xe604;</li>
+</ul>
+<div class="footer">
+    <p><i class="layui-icon">&#xe68e;</i> 博客空间 <a href="http://jwhuang.site">jwhuang.site</a></p>
+    <p>Copyright © 2018 <a href="http://jwhuang.site">jwhuang</a> &  版权所有  | <a href="https://github.com/jwhuang59/XZ_Blog" target="_black">网站源码Github</a></p>
+    <p>鄂ICP备16024346号</p>
+</div>
+
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cytrygClo"></script>
+<script id="cy_cmt_num" src="http://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytrygClo"></script>
+<script type="text/javascript" src='../static/js/jquery.js'></script>
+<script type="text/javascript" src="../admin/layui/layui.js"></script>
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/public.js"></script>
+<!-- 畅言js -->
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cytrygClo',
+conf: 'prod_3a6cc613160ae35fc755d1dab12d50f9'
+});
+$.get("../model/count.php",{id:"89"},function(data){
+  
+  $(".main .main-left .article .browse").html(data+"℃")
+});
+</script>
+</body>
+</html>

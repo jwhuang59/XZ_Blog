@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>文章管理</title>
+<link rel="shortcut icon" href="../logo.ico"></link>
+<link rel="stylesheet" href="../layui/css/layui.css">
+<link rel="stylesheet" href="css/article.css">
+
+</head>
+<body>
+<h3>全部文章</h3>
+<hr class="layui-bg-green">
+<div class="table">
+  <table class="layui-table" lay-data="{ url:'php/article.php', page:true,count:100,limit: 6, limits:[6]}" lay-filter="operate" id="page">
+    <thead>
+      <tr>
+        <th lay-data="{field:'id', width:60, sort: true, fixed: true,}">ID</th>
+        <th lay-data="{field:'title', width:200,align:'center',}">标题</th>
+        <th lay-data="{field:'type', width:150, align:'center',}">分类</th>
+        <th lay-data="{field:'sketch', width:300,align:'center',}">简述</th>
+        <th lay-data="{field:'text', width:300,align:'center',}">正文</th>
+        <th lay-data="{field:'time', width:180,align:'center',}">时间</th>
+        <th lay-data="{field:'operate', width:160, align:'center',toolbar: '#barDemo'}">操作</th>
+
+      </tr>
+    </thead>
+  </table>
+</div>
+
+<div class="edit">
+  <div class="layui-form" lay-filter="form" >
+    <div class="layui-form-item">
+      <div class="input_type"> 
+        <select name="file" lay-verify="select">
+          <option value="" ></option>
+          <option value="浅谈">浅谈</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="PHP">PHP</option>
+          <option value="前端文档">前端文档</option>
+          <option value="后端文档">后端文档</option>
+        </select>
+      </div>
+      <div class="input_title">
+        <input type="text" name="title" lay-filter="title" placeholder="请输入标题" autocomplete="off" class="layui-input tl" lay-verify="title">
+      </div>
+    </div>  
+      <div class="title" style="margin-left:0px;"><i>*</i><h4>文章简述：</h4></div>
+      <div class="layui-form-item">
+        <textarea placeholder="请输入文章简述" class="layui-textarea textarea1" name="text" lay-verify="text"></textarea>
+      </div>
+    
+    <div class="title" style="margin-left:0px;"><i>*</i><h4>正文</h4></div>
+    <div class="layui-form-item" >
+      <textarea placeholder="请输入文章简述" class="layui-textarea textarea2" name="text" lay-verify="text"></textarea> 
+    </div>
+  </div>
+</div>
+
+<div class="detail"></div>
+
+
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/javascript" src='js/jquery.js'></script>
+<script src="../layui/layui.js"></script>
+
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+
+    table.on('tool(operate)', function(obj){ 
+      var data = obj.data; 
+       if(obj.event === 'detail'){
+        var str="";
+        str +="<h2>"+data.title+"</h2>";
+        str +="<div><span class='span1'>"+"发布时间："+data.time+"</span><span class='span2'>"+"文章类型："+data.type+"</span></div><hr>";
+        str +="<div><b>"+"文章简述："+"</b><p>"+data.sketch+"</p></div>";
+        str +="<div><b>"+"文章内容："+"</b><textarea>"+data.text+"</textarea></div>";
+     
+        $(".detail").html(str);
+
+        layer.open({
+            type:1,
+            title:"查看文章",
+            area:['800px','500px'],
+            content:$(".detail")
+            ,btn: ['确定', '取消']
+        })
+
+    }else if(obj.event === 'edit'){
+      console.log($(".edit .textarea2").val())
+      if(data.type == '浅谈'){
+        $(".edit .layui-form").find("dd[lay-value='浅谈']").click();
+      }else if(data.type == 'JavaScript'){
+        $(".edit .layui-form").find("dd[lay-value='JavaScript']").click();
+      }else if(data.type == 'PHP'){
+        $(".edit .layui-form").find("dd[lay-value='PHP']").click();
+      }else if(data.type == '前端文档'){
+        $(".edit .layui-form").find("dd[lay-value='前端文档']").click();
+      }else{
+        $(".edit .layui-form").find("dd[lay-value='后端文档']").click();
+      }
+      $(".edit .tl").val(data.title)
+      $(".edit .textarea1").val(data.sketch)
+      $(".edit .textarea2").val(data.text)
+
+      layer.open({
+        type:1,
+        title:"修改文章",
+        area:['800px','500px'],
+        content:$(".edit"),
+        btn: ['确定', '取消'],
+        btn1: function(){     
+          layer.closeAll();
+              $.ajax({
+                type:'post',
+                url:'php/update.php',
+                data:{"id":data.id,"type":$(".layui-this").html(),"title":$(".edit .tl").val(),"sketch":$(".edit .textarea1").val(),"text":$(".edit .textarea2").val()},
+                beforeSend:function(){
+                  layer.load(0, {time: 2000});     
+                },
+                success:function(data){
+                    console.log(data)
+                    //setTimeout("layer.msg('修改成功',{icon:1, time:2000,},function(){window.location.reload();});",2000)
+
+                },
+                error:function(){
+                    setTimeout("layer.msg('修改失败',{icon:6, time:2000,});",2000)
+
+                }
+
+              })         
+        },
+        btn2: function(){          
+          layer.closeAll();
+        }
+
+      })
+    }else if(obj.event === 'del'){
+      layer.confirm('真的删除行么', function(index){
+       //  obj.del();
+      	 layer.close(index); 
+        $.ajax({
+            type:"post",
+            url:"php/del.php",
+            data:{"id":data.id},
+            beforeSend:function(){
+            	layer.load(0, {time: 1000}); 
+        		},
+            success:function(data){
+            	setTimeout("layer.msg('删除成功',{icon:1, time:2000,},function(){window.location.reload();})",1000)
+            },
+            error:function(){  
+          		setTimeout("layer.msg('删除失败',{icon:2, time:2000,})",1000)
+        		},
+        })
+      });
+    }
+  });
+
+  });
+</script>
+</body>
+</html>

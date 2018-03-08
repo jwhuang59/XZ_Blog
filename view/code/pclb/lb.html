@@ -1,0 +1,105 @@
+<html>
+<meta charset="utf-8">
+<style>
+*{margin:0;padding:0;}
+li{list-style:none;}
+body{width:100%;height:100%;}
+
+.lb{width:1200px;height:450px;position:relative;top:50%;left:50%;margin:-225px -600px;overflow:hidden;}
+.lb .lb_img{width:7200px;height:450px;position:absolute;left:0px;}
+.lb .lb_img img{width:1200px;height:450px;float:left;display:block;}
+.lb ul{width:110px;height:14px;position:absolute;bottom:20px;left:50%;margin-left:-60px;}
+.lb ul li{width:12px;height:12px;border-radius:7px;border:1px solid #fff;margin-left:7px;float:left;cursor:pointer;}
+.lb ul .active{background:#fff;}
+.lb ul li:hover{background:#fff;}
+.lb .prev{width:60px;height:60px;position:absolute;top:50%;left:10px;margin-top:-30px;cursor:pointer;display:none;}
+.lb .next{width:60px;height:60px;position:absolute;top:50%;right:10px;margin-top:-30px;cursor:pointer;display:none;}
+
+
+
+</style>
+<body>
+<div class="lb">
+		<div class="lb_img">
+			<img src="img/img1.jpg">
+			<img src="img/img2.jpg">
+			<img src="img/img3.jpg">
+			<img src="img/img4.jpg">
+			<img src="img/img5.jpg">
+			<img src="img/img1.jpg">
+		</div>
+		<ul>
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="prev"><img src="img/prev.png"></div>
+		<div class="next"><img src="img/next.png"></div>
+</div>	
+
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+var index=0;
+$(document).ready(function(){
+//索引按钮	
+	$(".lb ul li").click(function(){
+		index=$(this).index();
+		$(this).addClass("active").siblings().removeClass("active");		
+		$(".lb .lb_img").stop().animate({left:-index*1200+'px'},1000);
+	})
+//下一页按钮
+	$(".lb .next").click(function(){
+		autoplay();
+	})
+//上一页按钮
+	$(".lb .prev").click(function(){
+		index--;
+		if(index == -1){
+		   	index=4;
+		   	$(".lb .lb_img").css("left","-6000px");
+	   	}
+	   	$(".lb .lb_img").stop().animate({left:-index*1200+"px"},1000);
+		$(".lb ul li").eq(index).addClass("active").siblings().removeClass("active");
+
+	})
+//设置定时器
+	Time=setInterval(autoplay,2000)
+		function autoplay(){
+			index++;
+			$(".lb ul li").eq(index).addClass("active").siblings().removeClass("active");
+			if(index == 6){
+				index=1;
+				$(".lb .lb_img").css("left","0px");
+			}
+
+			$(".lb .lb_img").stop().animate({left:-index*1200+"px"},1000);
+			if(index==5){
+				$(".lb ul li").eq(0).addClass("active").siblings().removeClass("active");	
+			}else{
+				$(".lb ul li").eq(index).addClass("active").siblings().removeClass("active");
+			}
+		}
+//鼠标停留显示左右两边有按钮
+	$(".lb").hover(function(){
+		$(".lb .prev").fadeIn(300);
+		$(".lb .next").fadeIn(300);
+	},function(){
+		$(".lb .prev").fadeOut(300);
+		$(".lb .next").fadeOut(300);
+	});
+//鼠标悬停清除定时器
+	hover1=function(){
+		clearInterval(Time)
+	};
+	hover2=function(){
+		Time=setInterval(autoplay,2000)
+	}
+	$(".lb ul li").hover(hover1,hover2)
+	$(".lb .prev").hover(hover1,hover2)
+	$(".lb .next").hover(hover1,hover2)
+});
+</script>
+</body>
+</html>

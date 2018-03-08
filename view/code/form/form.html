@@ -1,0 +1,44 @@
+<html>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="form.css" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;}
+
+</style>
+<body>
+<div class="bg">
+	<img src="bg_img.jpg" style="width:100%;height:100%;">
+	<div class="Forms">
+		<div class="Forms_box">
+			<div class="Forms_head">
+				<a class="a1">快速注册</a>
+				<a class="a2 active">快速登录</a>
+			</div>
+			<div class="submit ">
+				<form action="signup.php" method="POST" class="Form1" id="Form1" onsubmit="return check()">
+					<span>账号&nbsp:&nbsp</span><input class="input1" type="username" name="signup_userName" onblur="signupusername()" required placeholder="请输入手机号">
+					<p class="text1">手机号码有误</p><p class="text2"></p>
+					<span>密码&nbsp:&nbsp</span><input class="input2" type="password" name="signup_passWord" onblur="signuppassword()" required placeholder="请输入密码">
+					<p class="text">密码必须由6-12位数字加字母组成</p>
+					<p class="yz">
+						<span>验证码&nbsp:</span>
+						<input type ="text" id="text" class="yz_text" required placeholder="请输入验证码">    
+            						<input type="button" id="code" onclick="Code()" title='点击更换验证码' >
+					</p>
+					<input class="sub1" type="submit" value="立即注册">
+				</form>
+			</div>
+			<div class="submit action">
+				<form action="login.php" method="POST">
+					<span>账号&nbsp:&nbsp</span><input class="input3" type="username" name="login_userName" required placeholder="请输入手机号" >
+					<span>密码&nbsp:&nbsp</span><input class="input4" type="password" name="login_passWord" required placeholder="请输入密码">
+					<input class="sub2" type="submit" value="立即登录">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="form.js" charset="utf-8"></script>
+</body>
+</html>

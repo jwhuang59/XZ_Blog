@@ -1,0 +1,54 @@
+@charset "utf-8;"
+
+*{margin:0;padding:0;}
+body{padding:10px 10px;}
+img{border:0px;}
+li{list-style:none;}
+a{text-decoration:none;}
+h3{font-size:24px;font-weight:bold;margin:10px 20px;}
+hr{margin:0 10px 0 20px;}
+
+/*re-article*/
+
+.title{font-size:18px;font-weight:bold;margin:10px 20px;}
+.title i{color:red;font-size:20px;}
+.title h4{display:inline-block;margin-left:5px;}
+.input_type{width:15%;float:left;}
+.input_title{width:85%;float:right;}
+
+/*article*/
+
+.file{width:180px;}
+.table{padding:10px 20px;display:block;}
+
+
+.edit{display:none;padding:10px}
+.detail{display:none;padding:0 10px}
+.detail h2{height:30px;line-height:30px;font-weight:bold;margin:5px auto;text-align:center;}
+.detail span{width:45%;height:20px;line-height:20px;text-align:left;display:inline-block;margin:5px 0;}
+.detail .span1{margin-left:5%;text-align:left;}
+.detail .span2{margin-right:5%;text-align:right;}
+
+.detail b{font-size:16px;margin:10px;display:block;}
+.detail p{width:96%;height:auto;line-height:30px;text-align:left;margin:0 auto;padding:0 5px 0 5px;border:1px solid #ddd;}
+.detail textarea{width:96%;height:160px;text-align:left;margin:0 auto;display:block;padding:5px;overflow:auto}
+
+/*home*/
+
+.chart{width:98%;padding:0 10px;}
+.chart .left{width:63%;float:left;}
+.chart .right{width:35%;float:right;}
+
+.chart .left #chart1{width: 100%;height:400px;}
+.chart .right #chart2{width: 100%;height:400px;}
+
+
+.home{width:98%;padding:20px 0 20px 20px;}
+.home p{height:30px;line-height:30px;}
+.home p a{width:100%;}
+.home .left{width:35%;float:left;}
+.home .right{width:63%;float:right;}
+.home .clear{clear:both;}
+
+
+

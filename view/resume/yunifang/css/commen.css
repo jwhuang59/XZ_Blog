@@ -1,0 +1,58 @@
+
+*{font-size:14px;font-family:"微软雅黑";color:#707070;}
+img{display:block;}
+body,dl,dd{margin:0;}
+ul{margin:0;padding:0;}
+li{list-style:none;}
+a{text-decoration:none;}
+input{margin:0;padding:0;border:0;outline:none;}
+h1,h2,p{margin:0;font-weight:normal;}
+.clearfix{clear:both;}
+
+.white_bg{box-shadow: 0px 4px 4.6px 0.4px rgba(0, 0, 0, 0.14);position:relative;width:100%;z-index:1;background-color:white;}
+.header{width:1002px;margin-left:auto;margin-right:auto;position:relative;}
+.logo{float:left;margin-right:20px;}
+.nav,.nav li{float:left;line-height:100px;margin-left:11px;margin-right:11px;}
+.cang{position:absolute;top:0;right:0;}
+.nav a{color:black;}
+.nav a:hover{color:#b2332d;}
+.nav .current{color:#b2332d;}
+
+
+.shop{width:1002px;margin-left:auto;margin-right:auto;text-align:center;position:relative;padding-top:60px;}
+.shop img{margin-left:auto;margin-right:auto;}
+.shop dl{float:left;width:25%;}
+.shop dt a{line-height:48px;color:black;font-size:16px;}
+.shop dt a:hover{color:#b2332d;}
+.content{line-height:40px;}
+.content a:hover{color:#b2332d;}
+.banner_box{position:relative;margin-left:auto;margin-right:auto;overflow:hidden;}
+.banner_box img{height:510px;width:1920px;}
+.banner_box ul{position:relative;left:50%;width:11520px;margin-left:-960px;}
+.banner_box li{float:left;}
+.ctrl{position:absolute;top:-35px;left:50%;margin-left:-246px;}
+.ctrl span{float:left;width:68px;height:68px;border-radius:50%;background-color:white;color:black;font-size:36px;margin-left:7px;margin-right:7px;text-align:center;line-height:68px;background-color:#eabca7;color:white;box-shadow: 0px 4px 1.88px 0.12px rgba(0, 0, 0, 0.14);cursor:pointer;}
+.ctrl .current{background-color:white;color:black;}
+.ctrl span:hover{background-color:white;color:black;}
+.a_left,.a_right{position:absolute;top:50%;width:30px;height:79px;z-index:2;cursor:pointer;margin-top:-40px;}
+.a_left{left:5%;background-image:url(images/arrow_left.png);}
+.a_right{right:5%;background-image:url(images/arrow_right.png);}
+
+
+.footer_bg{background-color:#eabca7;padding-top:18px;padding-bottom:30px;margin-top:10px;}
+.footer{width:1002px;margin-left:auto;margin-right:auto;text-align:center;position:relative;}
+.footer,.footer *{color:white;line-height:24px;}
+.logo_f{margin-left:auto;margin-right:auto;margin-top:20px;}
+.script_img{position:absolute;bottom:0;right:0;}
+
+.product_sub{float:left;width:750px;}
+.menu{width:210px;float:left;margin-top:30px;}
+.menu h1{font-size:16px;border-bottom:solid 1px #dedede;line-height:38px;padding-top:10px;padding-left:10px;}
+.menu .currentH1{background-color:black;color:white;}
+.menu dl{padding-left:28px;line-height:25px;padding-top:10px;padding-bottom:10px;}
+.menu dd a{font-size:14px;font-family:"宋体";}
+.menu dd a:hover{color:black;}
+
+
+
+

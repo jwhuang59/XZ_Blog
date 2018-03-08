@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- SEO关键字搜索 -->
+<meta name="keywords" content="jwhuang,戏子,戏子博客,jwhuang博客,个人博客,个人网站,个人主页,个人博客php源代码,基于php个人博客,戏子博客系统">
+<meta name="description" content="戏子博客,用jq+ajax+php+layui做的,简单方便,没有复杂的功能,就是一个简单个人展示博客">
+<meta name="author" content="jwhuang">
+<meta eta property="og:type" content="webpage" />
+<meta property="og:url" content="http://www.jwhuang.site" />
+<meta property="og:title" content="戏子的个人博客" />
+<meta property="og:description" content="一款简单的基于ajax+php+mysql的Blog网站" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>js_sdk实现第三方微博，QQ，微信登录</title>
+<link rel="shortcut icon" href="../logo.ico"></link>
+<link rel="stylesheet" href="../admin/layui/css/layui.css" >
+<link rel="stylesheet" href="../static/css/public.css">
+<link rel="stylesheet" href="../static/css/main.css">
+<link rel="stylesheet" href="../static/css/article.css"> 
+</head>
+<body>
+<div class="wrapper">
+    <canvas id="canvas" height="120px"></canvas>
+    <canvas id="canvasbg" height="120px"></canvas>
+</div>
+<div class="nav">
+  <div class="nav-menu">
+  <div class="logo"><img src="../static/images/logo.png"></div>
+    <ul class="nav-left">
+      <li><a href="http://jwhuang.site" class="menu-warper"><span class="menu-warper-box"><span class="front">首页</span><span class="back">首页</span></span> </a></li>
+      <li><a href="../view/article.html" class="menu-warper"><span class="menu-warper-box active"><span class="front">Blog文章</span><span class="back">Blog文章</span></span></a>
+        <ul>
+          <li><a href="../articlelist/talk.html" class="menu-warper"><span class="menu-warper-box"><span class="front">浅谈</span><span class="back">浅谈</span></span> </a></li>
+          <li><a href="../articlelist/js.html" class="menu-warper"><span class="menu-warper-box"><span class="front">JavaScript</span><span class="back">JavaScript</span></span> </a></li>
+          <li><a href="../articlelist/php.html" class="menu-warper"><span class="menu-warper-box"><span class="front">PHP</span><span class="back">php</span></span> </a></li>
+          <li><a href="../articlelist/front.html" class="menu-warper"><span class="menu-warper-box"><span class="front">前端文档</span><span class="back">前端文档</span></span> </a></li>
+          <li><a href="../articlelist/after.html" class="menu-warper"><span class="menu-warper-box"><span class="front">后端文档</span><span class="back">后端文档</span></span> </a></li>
+        </ul>
+      </li>
+      <li><a href="../view/share.html" class="menu-warper"><span class="menu-warper-box"><span class="front">分享</span><span class="back">分享</span></span> </a></li>
+      <li><a href="../view/about.html" class="menu-warper"><span class="menu-warper-box"><span class="front">关于我</span><span class="back">关于我</span></span></a>
+        <ul>
+          <li><a href="../view/resume/index.html" class="menu-warper"><span class="menu-warper-box"><span class="front">个人简历</span><span class="back">个人简历</span></span> </a></li>
+          
+        </ul>
+      </li>
+      <li><a href="../view/message.html" class="menu-warper"><span class="menu-warper-box"><span class="front">留言</span><span class="back">留言</span></span> </a></li>
+    </ul>
+    <div class="nav-right">
+      <a>搜索</a>
+      <div class="search">
+        <span>×</span>
+        <form action="../view/search.html" mothod="get">
+          <input type="text" class="text" name="keyword" placeholder="输入关键词搜索" value="">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="main-left">
+    <div class="breadcrumb_nav">
+        <span class="breadcrumb">
+          <a href="http://jwhuang.site">首页</a> —
+          <a href="../view/article.html">Blog文章</a> —
+          <a href="../articlelist/js.html">JavaScript</a> —
+          <label>js_sdk实现第三方微博，QQ，微信登录</label>
+        </span>
+    </div>
+    <div class="article">
+        <h2 class="h2">js_sdk实现第三方微博，QQ，微信登录</h2>
+        <div class="art_msg">
+            <span>发布时间：<label class="msg_date">2018-02-26 15:04:58</label></span>
+            <span>浏览量：<label class="msg_browse browse"></label></span>
+            <span>评论数：<label class="msg_browse"><span id = "sourceId::92" class = "cy_cmt_count" style="display:inline"></span></label></span>
+        </div>
+        <div class="art_text">
+            <p><h2 style="font-style:normal">微博第三方登录及授权</h2>
+
+<h3>注册申请appkey</h3>
+
+<p>1.打开微博开发者平台<a href="https://link.jianshu.com?t=http://open.weibo.com/development" target="_blank">http://open.weibo.com/development</a><br />
+2.点击创建微链接<br />
+3.选择类型(选择网站接入)<br />
+4.填写各项信息，并把对应的meta复制并放在html的head内(一定要绑定域名并设置回调地址)<br />
+<code>&lt;meta property=&quot;wb:webmaster&quot; content=&quot;xxxxxxx&quot; /&gt;</code><br />
+5.在html内引入微博api(debug=true是调试模式，可以返回对应的信息)<br />
+<code>&lt;script type=&quot;text/javascript&quot; src=&quot;http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=你的appkey&amp;debug=true&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</code></p>
+
+<h3>编写js代码</h3>
+
+<hr />
+<p>if(WB2.checkLogin()){//检查是否已登录<br />
+&nbsp;&nbsp;&nbsp; WB2.logout(function(){//退出登录方法<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //回调方法<br />
+&nbsp;&nbsp;&nbsp; });<br />
+}<br />
+WB2.login(function(){//登录授权<br />
+&nbsp;&nbsp;&nbsp; WB2.anyWhere(function(W){<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; W.parseCMD(&#39;/account/get_uid.json&#39;,function(oResult1,bStatus){//获取用户uid<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(bStatus){<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; W.parseCMD(&#39;/users/show.json&#39;,function(oResult2,bStatus){//通过uid获取用户信息<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(bStatus){<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var args = {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; openid:oResult2.id,//获取用户openid<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; access_token:WB2.oauthData.access_token,//获取用户access_token<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; username:oResult2.name,//获取用户名<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; userHeadImg:oResult2.profile_image_url,//获取用户微博头像<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //然后根据实际情况进行自己网站的一些认证处理<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },{uid:oResult1.uid},{method:&#39;get&#39;,cache_time:30});<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },{},{method:&#39;get&#39;,cache_time:30});//默认是post请求方法<br />
+&nbsp;&nbsp;&nbsp; });<br />
+});</p>
+
+<hr />
+<h2 style="font-style:normal">QQ第三方登录及授权</h2>
+
+<h3>注册申请id</h3>
+
+<p>1.打开腾讯开放平台<a href="https://link.jianshu.com?t=http://open.qq.com/reg" target="_blank">http://open.qq.com/reg</a><br />
+2.填写各项信息获得appid和appkey<br />
+3.引入js文件<br />
+<code>&lt;script id=&quot;qq&quot; type=&quot;text/javascript&quot; src=&quot;http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js&quot; data-appid=&quot;你自己的appid&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</code></p>
+
+<h3>编写js代码</h3>
+
+<hr />
+<p>if(QC.Login.check()){//检查是否已登录<br />
+&nbsp;&nbsp;&nbsp; QC.Login.signOut();退出登录<br />
+}<br />
+QC.login({<br />
+&nbsp;&nbsp;&nbsp; btnId:&quot;&quot;,//插入按钮的节点id，必选,可为空字符串<br />
+&nbsp;&nbsp;&nbsp; scope:&quot;all&quot;,//用户需要确认的scope授权项，可选，默认all<br />
+&nbsp;&nbsp;&nbsp; size: &quot;A_XL&quot;//按钮尺寸，可用值[A_XL| A_L| A_M| A_S|&nbsp; B_M| B_S| C_S]，可选，默认B_S<br />
+},function(reqData,opts){<br />
+&nbsp;&nbsp;&nbsp; //登录成功回调方法<br />
+&nbsp;&nbsp;&nbsp; QC.Login.getMe(function(openId,accessToken){<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var args = {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; openid:openId,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; userHeadImg:reqData.figureurl_qq_2,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; access_token:accessToken,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br />
+&nbsp;&nbsp;&nbsp; });<br />
+&nbsp;&nbsp;&nbsp; QC.api(&#39;get_user_info&#39;,{}).success(function(userdata){<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //可以获得用户的各种相关信息，如用户昵称<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var username = userdata.data.nickname;<br />
+&nbsp;&nbsp;&nbsp; });<br />
+},function(opts){<br />
+&nbsp;&nbsp;&nbsp; //注销成功回调方法<br />
+});</p>
+
+<hr />
+<h2>微信第三方登录及授权</h2>
+
+<h3>注册申请id</h3>
+
+<p>1.打开微信开放平台<a href="https://link.jianshu.com?t=https://open.weixin.qq.com/cgi-bin/frame?t=home/web_tmpl&amp;lang=zh_CN" target="_blank">https://open.weixin.qq.com/cgi-bin/frame?t=home/web_tmpl&amp;lang=zh_CN</a><br />
+2.填写各项信息并获得appid<br />
+3.由于微信是需要用手机扫二维码登录的，所以可以通过直接打开新窗口的方式来让用户去扫码登录，因此无需引用js相关文件</p>
+
+<h3>编写js代码</h3>
+
+<hr />
+<p>var path = &#39;http://www.xxxx.com&#39;;//登录后回调的地址<br />
+var appid = &#39;xxxxxxxxx&#39;;//注册申请的appid<br />
+window.open(&#39;https://open.weixin.qq.com/connect/qrconnect?appid=&#39;+appid+&#39;&amp;redirect_uri=path&amp;response_type=code&amp;scope=snsapi_login&amp;state=STATE#wechat_redirect&#39;);//代开二维码页面，扫码成功后会回调到path地址<br />
+//然后可以通过地址栏得到code参数的值，可以通过code值来根据需要进行进一步的操作</p>
+
+<hr />
+<h2>附上demo；</h2>
+
+<h3>微博登录</h3>
+
+<hr />
+<ol>
+	<li>&lt;!DOCTYPE&nbsp;html<strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>html</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>head</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>meta</strong>&nbsp;charset=&quot;utf-8&quot;<strong>&gt;</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>script</strong>&nbsp;type=&quot;text/javascript&quot;&nbsp;src=&quot;http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=&#39;+这里是微博开放平台的appid&#39;&amp;debug=true&quot;&nbsp;charset=&quot;utf-8&quot;<strong>&gt;</strong><strong>&lt;/</strong><strong>script</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>head</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>body</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>wb:like</strong>&nbsp;appkey=&quot;1gsQQT&quot;<strong>&gt;</strong><strong>&lt;/</strong><strong>wb:like</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>html</strong>&nbsp;xmlns:wb=&ldquo;http://open.weibo.com/wb&rdquo;<strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>span</strong>&nbsp;id=&quot;wb_connect_btn&quot;<strong>&gt;</strong>微博登录按钮<strong>&lt;/</strong><strong>span</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>span</strong>&nbsp;class=&quot;loginout&quot;<strong>&gt;</strong>退出<strong>&lt;/</strong><strong>span</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>script</strong>&nbsp;type=&quot;text/javascript&quot;<strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li>WB2.anyWhere(function&nbsp;(W)&nbsp;{&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W.widget.connectButton({&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:&nbsp;&quot;wb_connect_btn&quot;,&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;&#39;3,2&#39;,&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callback:&nbsp;{&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login:&nbsp;function&nbsp;(o)&nbsp;{&nbsp;//登录后的回调函数&nbsp;&nbsp;</li>
+	<li>　　　　　&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(o);&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//这里是ajax发送数据储存&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//前台数据展示&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logout:&nbsp;function&nbsp;()&nbsp;{&nbsp;//退出后的回调函数&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//thirdparty(null,null,o.avatar_hd,&nbsp;o.name&nbsp;,3,&nbsp;o.id);个人方法&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</li>
+	<li>document.getElementsByClassName(&#39;loginout&#39;)[0].onclick=function(){&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;WB2.logout(function()&nbsp;{&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.location.href=&#39;test.html&#39;;//自定义的退出登录按钮&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li>}&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>script</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>body</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>html</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+</ol>
+
+<hr />
+<h2>QQ登录</h2>
+
+<hr />
+<ol>
+	<li>&lt;!DOCTYPE&nbsp;html<strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>html</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>head</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>meta</strong>&nbsp;charset=&quot;utf-8&quot;<strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>script</strong>&nbsp;type=&quot;text/javascript&quot;&nbsp;src=&quot;http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js&quot;&nbsp;data-appid=&quot;+qq互联申请的appid+&quot;&nbsp;data-redirecturi=&quot;+这里是回调地址&nbsp;不写默认刷新原页面+&quot;&nbsp;charset=&quot;utf-8&quot;<strong>&gt;</strong><strong>&lt;/</strong><strong>script</strong><strong>&gt;</strong>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>head</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>body</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>span</strong>&nbsp;id=&quot;qqLoginBtn&quot;<strong>&gt;</strong><strong>&lt;/</strong><strong>span</strong><strong>&gt;</strong>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li><strong>&lt;</strong><strong>script</strong>&nbsp;&nbsp;type=&quot;text/javascript&quot;<strong>&gt;</strong>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;//qq登录&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;QC.Login({&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;btnId:&nbsp;&quot;qqLoginBtn&quot;,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scope:&nbsp;&quot;all&quot;,&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size:&nbsp;&quot;A_M&quot;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;paras&nbsp;=&nbsp;{};&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;//用JS&nbsp;SDK调用OpenAPI&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;QC.api(&quot;get_user_info&quot;,&nbsp;paras)&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.success(function&nbsp;(s)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(s.data);&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//这里写ajax发送数据储存&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//前台数据展示&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.error(function&nbsp;(f)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(&quot;获取用户信息失败！&quot;);&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;<strong>&lt;/</strong><strong>script</strong><strong>&gt;</strong>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li>&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>body</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+	<li><strong>&lt;/</strong><strong>html</strong><strong>&gt;</strong>&nbsp;&nbsp;</li>
+</ol>
+
+<hr />
+<p>上面就是微博，qq登录的实例，本人亲测可用！！！</p>
+
+<p>&nbsp;</p>
+</p>
+        </div>
+        <div class="art_tag">
+            <p>标签1，标签2</p>
+        </div>
+        <div class="prev_next">
+            <div class="prev"> 上一篇： <a href="../article/91.html">曾经用过的十大富文本编辑器</a></div>
+            <div class="next"> 下一篇： <a href="../article/95.html">PHP获取路径和目录的方法总结</a></div>
+        </div>
+    </div>
+
+    <div class="comment">
+        <div id="cyEmoji" role="cylabs" data-use="emoji"></div>
+        <div id="SOHUCS" sid="92"></div>
+    </div>
+
+
+  </div>
+  <div class="main-right">
+      <div class="about">
+        <h3>博客信息</h3>
+        <p>主页</p>
+        <a href="http://www.jwhuang.site">www.jwhuang.site</a>
+        <p>源码地址</p>
+        <b>Github<a href="https://github.com/jwhuang59/XZ_Blog" target="_black">点我打开</a></b>
+        <span><strong>简介：</strong>一款简单的基于ajax+php+mysql的Blog网站，用于记录自己所学的知识，支持QQ、微博账号第三方登陆，欢迎来留言、评论。</span>
+        <span><strong>座右铭：</strong>路漫漫其修远兮，吾将上下而求索</span>
+      </div>
+      <div class="hot_list">
+        <h3>热门文章</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="wx">
+        <h3>小程序</h3>
+        <div class="wx_img">
+          <img src="../static/images/wx_img.jpg">
+        </div>
+      </div>
+      <div class="tag_cloud">
+        <h3>Tags</h3>
+        <div id="tags">
+         
+        </div>
+      </div>
+      <div class="fl_list">
+        <h3>分类</h3>
+        <ul class="list"></ul>
+      </div>
+      <div class="link">
+        <h3>友情链接</h3>
+        <ul class="href">
+            
+        </ul>
+      </div>
+
+  </div>
+  <div class="clear"></div>
+</div>
+
+<ul class="layui-fixbar">
+  
+    <li class="layui-icon top">&#xe604;</li>
+</ul>
+<div class="footer">
+    <p><i class="layui-icon">&#xe68e;</i> 博客空间 <a href="http://jwhuang.site">jwhuang.site</a></p>
+    <p>Copyright © 2018 <a href="http://jwhuang.site">jwhuang</a> &  版权所有  | <a href="https://github.com/jwhuang59/XZ_Blog" target="_black">网站源码Github</a></p>
+    <p>鄂ICP备16024346号</p>
+</div>
+
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cytrygClo"></script>
+<script id="cy_cmt_num" src="http://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytrygClo"></script>
+<script type="text/javascript" src='../static/js/jquery.js'></script>
+<script type="text/javascript" src="../admin/layui/layui.js"></script>
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/public.js"></script>
+<!-- 畅言js -->
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cytrygClo',
+conf: 'prod_3a6cc613160ae35fc755d1dab12d50f9'
+});
+$.get("../model/count.php",{id:"92"},function(data){
+  
+  $(".main .main-left .article .browse").html(data+"℃")
+});
+</script>
+</body>
+</html>
