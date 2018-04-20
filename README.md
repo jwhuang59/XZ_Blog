@@ -31,9 +31,9 @@
 
 ### 前台页面展示
 
-![Image](http://jwhuang.site/uploads/pc.jpg)
+![Image](https://github.com/jwhuang59/XZ_OnlineBlog/blob/master/uploads/pc.jpg)
 
 ### 后台页面展示
 
-![Image text](http://jwhuang.site/uploads/admin.jpg)
+![Image text](https://github.com/jwhuang59/XZ_OnlineBlog/blob/master/uploads/admin.jpg)
 
